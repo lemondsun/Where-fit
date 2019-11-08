@@ -1,8 +1,8 @@
-const { Router } = require('express');
+const express = require('express');
 const { User } = require('../models');
 const { hashPassword, genToken, checkPassword, restrict } = require('../services/auth');
 
-const userRouter = Router();
+const userRouter = express();
 
 const buildAuthResponse = (user) => {
   const userData = {
@@ -21,46 +21,46 @@ const buildAuthResponse = (user) => {
 
 
 //
-userRouter.post('/login', async (req, res) => {
-  try {
-    const user = await User.findOne({
-      where: {
-        username: req.body.username,
-      },
-    });
+// userRouter.post('/login', async (req, res) => {
+//   try {
+//     const user = await User.findOne({
+//       where: {
+//         username: req.body.username,
+//       },
+//     });
 
-    if (await checkPassword(req.body.password, user.password_digest)) {
-      const respData = buildAuthResponse(user);
+//     if (await checkPassword(req.body.password, user.password_digest)) {
+//       const respData = buildAuthResponse(user);
 
-      res.json(respData);
-    } else {
-      res.status(401).send('Invalid Credentials');
-    }
-  } catch (e) {
-    next(e);
-  }
-});
-app.post('/register', async (req, res) => {
-  try {
-    const password_digest = await hashPassword(req.body.password);
-    const { username } = req.body;
+//       res.json(respData);
+//     } else {
+//       res.status(401).send('Invalid Credentials');
+//     }
+//   } catch (e) {
+//     next(e);
+//   }
+// });
+// userRouter.post('/register', async (req, res) => {
+//   try {
+//     const password_digest = await hashPassword(req.body.password);
+//     const { username } = req.body;
 
-    const user = await User.create({
-      username,
-      password_digest,
-    });
+//     const user = await User.create({
+//       username,
+//       password_digest,
+//     });
 
-    const respData = buildAuthResponse(user);
+//     const respData = buildAuthResponse(user);
 
-    res.json(respData);
-  } catch (e) {
-    next(e);
-  }
-});
-userRouter.get('/verify', restrict, (req, res) => {
-  const user = res.locals.user;
-  res.json(user);
-})
+//     res.json(respData);
+//   } catch (e) {
+//     next(e);
+//   }
+// });
+// userRouter.get('/verify', restrict, (req, res) => {
+//   const user = res.locals.user;
+//   res.json(user);
+// })
 
 
 module.exports = userRouter;
