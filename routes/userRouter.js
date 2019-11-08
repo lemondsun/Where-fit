@@ -18,23 +18,9 @@ const buildAuthResponse = (user) => {
   };
 };
 
-userRouter.post('/register', async (req, res) => {
-  try {
-    const password_digest = await hashPassword(req.body.password);
-    const { username } = req.body;
 
-    const user = await User.create({
-      username,
-      password_digest,
-    });
 
-    const respData = buildAuthResponse(user);
-
-    res.json(respData);
-  } catch (e) {
-    next(e);
-  }
-});
+//
 userRouter.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({
@@ -54,9 +40,27 @@ userRouter.post('/login', async (req, res) => {
     next(e);
   }
 });
+app.post('/register', async (req, res) => {
+  try {
+    const password_digest = await hashPassword(req.body.password);
+    const { username } = req.body;
+
+    const user = await User.create({
+      username,
+      password_digest,
+    });
+
+    const respData = buildAuthResponse(user);
+
+    res.json(respData);
+  } catch (e) {
+    next(e);
+  }
+});
 userRouter.get('/verify', restrict, (req, res) => {
   const user = res.locals.user;
   res.json(user);
 })
+
 
 module.exports = userRouter;
