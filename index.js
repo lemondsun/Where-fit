@@ -9,14 +9,18 @@ const app = express();
 app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-
-app.get('/', (req, res) => {
-  res.json({ message: 'It is working' })
+//routes from home page
+app.get('/', async (req, res) => {
+  const locations = await Location.findAll()
+  res.json(locations)
 })
 
-app.get('/ping', (req, res) => {
-  res.json({ ping: 'pong' })
+app.get('/location/:id', async (req, res) => {
+  const id = req.params.id
+  const location = await Location.findByPk(id)
+  res.json(location)
 })
+// routes from login page, regiter
 
 
 
