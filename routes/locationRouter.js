@@ -10,7 +10,7 @@ const { restrict } = require('../services/auth')
 // .get (restrict, async (req, res, next) => {
 
 
-locationRouter.get('/', async (req, res, next) => {
+locationRouter.get('/', restrict, async (req, res, next) => {
   try {
     const location = await Location.findAll({
       where: {
@@ -26,7 +26,7 @@ locationRouter.get('/', async (req, res, next) => {
 })
 
   
-  locationRouter.post('/', async (req, res, next) => {
+  locationRouter.post('/', restrict, async (req, res, next) => {
       try {
         const location = await Location.create({
             ...req.body,
@@ -42,7 +42,7 @@ locationRouter.get('/', async (req, res, next) => {
 locationRouter.route('/:id')
    //use id from body of call and not urlfront end needs to pass
   
-.get ( async (req, res, next) => {
+.get (restrict, async (req, res, next) => {
   try {
     const location = await Location.findByPk(req.body.id);
     res.json(location);
@@ -51,7 +51,7 @@ locationRouter.route('/:id')
   }
 })
 
-  .put(async (req, res, next) => {
+  .put(restrict, async (req, res, next) => {
     try {
       const location = await Location.findByPk(req.body.id);
       await location.update(req.body)
@@ -60,7 +60,7 @@ locationRouter.route('/:id')
       next(e)
     }
   })
-  .delete( async (req, res, next) => {
+  .delete(restrict, async (req, res, next) => {
     try {
       const location = await Location.destroy({ where: { id: req.body.id } })
       res.json(req.body.id)

@@ -10,7 +10,7 @@ const { restrict } = require('../services/auth')
 // .get (restrict, async (req, res, next) => {
 
 
-activityRouter.get('/', async (req, res, next) => {
+activityRouter.get('/', restrict, async (req, res, next) => {
   try {
     const activity = await Activity.findAll({
       where: {
@@ -26,7 +26,7 @@ activityRouter.get('/', async (req, res, next) => {
 })
 
 
-activityRouter.post('/', async (req, res, next) => {
+activityRouter.post('/', restrict, async (req, res, next) => {
   try {
     const activity = await Activity.create({
       ...req.body,
@@ -42,7 +42,7 @@ activityRouter.post('/', async (req, res, next) => {
 activityRouter.route('/:id')
   //use id from body of call and not urlfront end needs to pass
 
-  .get(async (req, res, next) => {
+  .get(restrict, async (req, res, next) => {
     try {
       const activity = await Activity.findByPk(req.body.id);
       res.json(activity);
@@ -51,7 +51,7 @@ activityRouter.route('/:id')
     }
   })
 
-  .put(async (req, res, next) => {
+  .put(restrict, async (req, res, next) => {
     try {
       const activity = await Activity.findByPk(req.body.id);
       await activity.update(req.body)
@@ -60,7 +60,7 @@ activityRouter.route('/:id')
       next(e)
     }
   })
-  .delete(async (req, res, next) => {
+  .delete(restrict, async (req, res, next) => {
     try {
       const activity = await Activity.destroy({ where: { id: req.body.id } })
       res.json(req.body.id)

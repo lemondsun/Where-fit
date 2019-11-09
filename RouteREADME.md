@@ -29,8 +29,20 @@ http://localhost:3001/register
 	"password":"123"
 }
 
+
+NOTE
+token required 
+ from here if using postman down 
+go to authorization
+type select bearer
+and paste the token you received fromm above
+without quotes
+
+
+
+
 get - get user data
-http://localhost:3001/user/1  
+http://localhost:3001/user/1
 {
 	"id":1
 }

@@ -13,7 +13,7 @@ const { restrict } = require('../services/auth')
 userRouter.route('/:id')
    //use id from body of call and not urlfront end needs to pass
   
-.get ( async (req, res, next) => {
+.get (restrict, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.body.id);
     let user2 = user;
@@ -26,7 +26,7 @@ userRouter.route('/:id')
   }
 })
 
-  .put(async (req, res, next) => {
+  .put(restrict, async (req, res, next) => {
     try {
       const user = await User.findByPk(req.body.id);
       req.body.password_digest =  user.password_digest
@@ -36,7 +36,7 @@ userRouter.route('/:id')
       next(e)
     }
   })
-  .delete( async (req, res, next) => {
+  .delete(restrict, async (req, res, next) => {
     try {
       const user = await User.destroy({ where: { id: req.body.id } })
       res.json(req.body.id)
