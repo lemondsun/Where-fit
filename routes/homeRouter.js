@@ -28,7 +28,6 @@ homeRouter.get('/', async (req, res) => {
 })
 homeRouter.get('/:id', async (req, res) => {
   const id = req.params.id
-  console.log(id)
   const location = await Location.findByPk(id)
   res.json(location)
 })
@@ -66,7 +65,11 @@ homeRouter.post('/login', async (req, res) => {
       res.status(401).send('Invalid Credentials');
     }
   } catch (e) {
+    res.status(401).send('Invalid Credentials');
     next(e);
+     // if user does not exist we go out to lunch and don't come back
+    // in console we get error next not defined 
+    // so put in the 401 above next
   }
 });
 
