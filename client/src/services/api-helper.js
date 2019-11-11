@@ -11,7 +11,7 @@ export const indexHome = async () => {
   return resp.data
 }
 
-export const showHome = async (id) => {
+export const showHome = async (id,getData) => {
   const resp = await api.get(`/${id}`, getData);
   return resp.data
 }
@@ -49,7 +49,7 @@ export const verifyUser = async () => {
 //   return resp.data
 // }
 
-export const showUser = async (id) => {
+export const showUser = async (id, getData) => {
   const resp = await api.get(`/user/${id}`, getData);
   return resp.data
 }
@@ -64,7 +64,7 @@ export const putUser = async (id, putData) => {
   return resp.data
 }
 
-export const destroyUser = async (id) => {
+export const destroyUser = async (id, deleteData) => {
   const resp = await api.delete(`/user/${id}`, deleteData);
   return resp.data
 }
@@ -72,17 +72,17 @@ export const destroyUser = async (id) => {
 // ============== Location ===============
 
 
-export const indexLocation = async () => {
+export const indexLocation = async (id, getData) => {
   const resp = await api.get(`/user/${id}/location`, getData);
   return resp.data
 }
 
-export const showLocation = async (id) => {
+export const showLocation = async (id, getData) => {
   const resp = await api.get(`/user/${id}/location/${id}`, getData);
   return resp.data
 }
 
-export const postLocation = async (postData) => {
+export const postLocation = async (id,postData) => {
   const resp = await api.post(`/user/${id}/location`, postData);
   return resp.data
 }
@@ -92,7 +92,7 @@ export const putLocation = async (id, putData) => {
   return resp.data
 }
 
-export const destroyLocation = async (id) => {
+export const destroyLocation = async (id, deleteData) => {
   const resp = await api.delete(`/user/${id}/location/${id}`, deleteData);
   return resp.data
 }
@@ -101,17 +101,17 @@ export const destroyLocation = async (id) => {
 // ============== Activity ===============
 
 
-export const indexActivity = async () => {
+export const indexActivity = async (id, getData) => {
   const resp = await api.get(`/user/${id}/location/${id}/activity`, getData);
   return resp.data
 }
 
-export const showActivity = async (id) => {
+export const showActivity = async (id, getData) => {
   const resp = await api.get(`/user/${id}/location/${id}/activity/${id}`, getData);
   return resp.data
 }
 
-export const postActivity = async (postData) => {
+export const postActivity = async (id, postData) => {
   const resp = await api.post(`/user/${id}/location/${id}/activity`, postData);
   return resp.data
 }
@@ -121,7 +121,7 @@ export const putActivity = async (id, putData) => {
   return resp.data
 }
 
-export const destroyActivity = async (id) => {
+export const destroyActivity = async (id, deleteData) => {
   const resp = await api.delete(`/user/${id}/location/${id}/activity/${id}`, deleteData);
   return resp.data
 }
