@@ -3,13 +3,6 @@ const locationRouter = Router();
 const { Location } = require('../models.js')
 const { restrict } = require('../services/auth')
 
-// 
-// 
-// need to add restrict back in on all these routes
-// example
-// .get (restrict, async (req, res, next) => {
-
-
 locationRouter.get('/', restrict, async (req, res, next) => {
   try {
     const location = await Location.findAll({
