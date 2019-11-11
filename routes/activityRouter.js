@@ -3,13 +3,6 @@ const activityRouter = Router();
 const { Activity } = require('../models.js')
 const { restrict } = require('../services/auth')
 
-// 
-// 
-// need to add restrict back in on all these routes
-// example
-// .get (restrict, async (req, res, next) => {
-
-
 activityRouter.get('/', restrict, async (req, res, next) => {
   try {
     const activity = await Activity.findAll({

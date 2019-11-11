@@ -20,8 +20,6 @@ const buildAuthResponse = (user) => {
   }
 }
 
-
-
 homeRouter.get('/', async (req, res) => {
   const location = await  Location.findAll()
   res.json(location)
@@ -66,8 +64,7 @@ homeRouter.post('/login', async (req, res) => {
     }
   } catch (e) {
     res.status(401).send('Invalid Credentials');
-    next(e);
-     // if user does not exist we go out to lunch and don't come back
+    // if user does not exist we go out to lunch and don't come back
     // in console we get error next not defined 
     // so put in the 401 above next
   }

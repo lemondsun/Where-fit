@@ -3,13 +3,6 @@ const userRouter = Router();
 const { User  } = require('../models.js')
 const { restrict } = require('../services/auth')
 
-// 
-// 
-// need to add restrict back in on all these routes
-// example
-// .get (restrict, async (req, res, next) => {
-
-
 userRouter.route('/:id')
    //use id from body of call and not urlfront end needs to pass
   
