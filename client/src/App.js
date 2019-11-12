@@ -96,6 +96,14 @@ class App extends Component {
         <Route exact path='/' render={() => <HomePage locations={this.state.locations} />} />
         {/* <Route path='/:id' render={() => <HomePage locations={this.state.locations}  />} /> */}
 
+        {/* //location page route  */}
+      <Route path='/location'
+            render={() =>
+              <LocationList
+                locations={this.state.locations} 
+                handleClick = {this.handleClick}
+            />} />
+
 
         {/* <Route exact path='/register' render={() => <RegisterForm user={this.state.user} handleChange={this.handleChange} handleRegister={this.handleRegister}/>}/> */}
 
