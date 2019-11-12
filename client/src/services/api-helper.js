@@ -84,6 +84,7 @@ export const destroyUser = async (id, deleteData) => {
 
 
 export const indexLocation = async (id, getData) => {
+  console.log("test", getData)
   const resp = await api.get(`/user/${id}/location`, getData);
   return resp.data
 }

@@ -8,7 +8,7 @@ userRouter.route('/:id')
   
 .get (restrict, async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.body.id);
+    const user = await User.findByPk(req.params.id);
     let user2 = user;
     // don't send real password_digest to fronend
     //so make copy and null it out
@@ -31,7 +31,7 @@ userRouter.route('/:id')
   })
   .delete(restrict, async (req, res, next) => {
     try {
-      const user = await User.destroy({ where: { id: req.body.id } })
+      const user = await User.destroy({ where: { id: req.params.id } })
       res.json(req.body.id)
     } catch (e) {
       next(e)
