@@ -107,6 +107,8 @@ class App extends Component {
 
         {/* <Route exact path='/register' render={() => <RegisterForm user={this.state.user} handleChange={this.handleChange} handleRegister={this.handleRegister}/>}/> */}
 
+        <Route path={`/user/${id}/location/${id}/activity`} render={() => <AcitivtyList activities={this.state.activities} />} />
+
         <Footer />
       </div>
     );
