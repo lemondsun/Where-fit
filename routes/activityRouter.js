@@ -8,7 +8,7 @@ activityRouter.get('/', restrict, async (req, res, next) => {
     const activity = await Activity.findAll({
       where: {
         ...req.body,
-        locationId: req.body.location_id,
+        locationId: req.params.location_id,
       },
     }
     )
@@ -23,7 +23,7 @@ activityRouter.post('/', restrict, async (req, res, next) => {
   try {
     const activity = await Activity.create({
       ...req.body,
-      locationId: req.body.location_id,
+      locationId: req.body.id,
     });
     res.json(activity);
   } catch (e) {
@@ -37,7 +37,7 @@ activityRouter.route('/:id')
 
   .get(restrict, async (req, res, next) => {
     try {
-      const activity = await Activity.findByPk(req.body.id);
+      const activity = await Activity.findByPk(req.params.id);
       res.json(activity);
     } catch (e) {
       next(e)
@@ -55,8 +55,8 @@ activityRouter.route('/:id')
   })
   .delete(restrict, async (req, res, next) => {
     try {
-      const activity = await Activity.destroy({ where: { id: req.body.id } })
-      res.json(req.body.id)
+      const activity = await Activity.destroy({ where: { id: req.params.id } })
+      res.json(req.params.id)
     } catch (e) {
       next(e)
     }

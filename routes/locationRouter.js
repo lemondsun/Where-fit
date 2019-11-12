@@ -1,14 +1,15 @@
 const { Router } = require('express');
-const locationRouter = Router();
+const locationRouter = Router({ mergeParams: true });
 const { Location } = require('../models.js')
 const { restrict } = require('../services/auth')
 
+
 locationRouter.get('/', restrict, async (req, res, next) => {
   try {
+    const id = req.params.id
     const location = await Location.findAll({
       where: {
-        ...req.body,
-        userId: req.body.user_id,
+        userId: id
       },
     }
     )
@@ -18,31 +19,31 @@ locationRouter.get('/', restrict, async (req, res, next) => {
   }
 })
 
-  
-  locationRouter.post('/', restrict, async (req, res, next) => {
-      try {
-        const location = await Location.create({
-            ...req.body,
-            userId: req.body.user_id,
-        });
-        res.json(location);
-      } catch (e) {
-        next(e)
-      }
-    })
 
-
-locationRouter.route('/:id')
-   //use id from body of call and not urlfront end needs to pass
-  
-.get (restrict, async (req, res, next) => {
+locationRouter.post('/', restrict, async (req, res, next) => {
   try {
-    const location = await Location.findByPk(req.body.id);
+    const location = await Location.create({
+      ...req.body,
+      userId: req.body.user_id,
+    });
     res.json(location);
   } catch (e) {
     next(e)
   }
 })
+
+
+locationRouter.route('/:id')
+  //use id from body of call and not urlfront end needs to pass
+
+  .get(restrict, async (req, res, next) => {
+    try {
+      const location = await Location.findByPk(req.params.id);
+      res.json(location);
+    } catch (e) {
+      next(e)
+    }
+  })
 
   .put(restrict, async (req, res, next) => {
     try {
@@ -55,8 +56,8 @@ locationRouter.route('/:id')
   })
   .delete(restrict, async (req, res, next) => {
     try {
-      const location = await Location.destroy({ where: { id: req.body.id } })
-      res.json(req.body.id)
+      const location = await Location.destroy({ where: { id: req.params.id } })
+      res.json(req.params.id)
     } catch (e) {
       next(e)
     }
