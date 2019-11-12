@@ -123,7 +123,19 @@ class App extends Component {
         />
         <button>Submit</button>
       </form>
+      
         
+    {/* //location page route  */}
+      <Route path='/location'
+            render={() =>
+              <LocationList
+                locations={this.state.locations} 
+                handleClick = {this.handleClick}
+            />} />
+
+
+
+
         
 
 
