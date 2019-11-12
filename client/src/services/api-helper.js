@@ -11,7 +11,7 @@ export const indexHome = async () => {
   return resp.data
 }
 
-export const showHome = async (id,getData) => {
+export const showHome = async (id, getData) => {
   const resp = await api.get(`/${id}`, getData);
   return resp.data
 }
@@ -19,21 +19,32 @@ export const showHome = async (id,getData) => {
 // ============== Auth ================
 
 export const loginUser = async (loginData) => {
-  const resp = await api.post('/login', loginData)
-  localStorage.setItem('authToken', resp.data.token);
-  api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`
-  return resp.data.user
+  try {
+    const resp = await api.post('/login', loginData)
+    localStorage.setItem('authToken', resp.data.token);
+    api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`
+    return resp.data.user
+  }
+  catch (e) {
+    return ({ username: "", id: -1 })
+  }
 }
 
 export const registerUser = async (registerData) => {
-  const resp = await api.post('/register', registerData)
-  localStorage.setItem('authToken', resp.data.token);
-  api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`
-  return resp.data
+  try {
+    const resp = await api.post('/register', registerData)
+    localStorage.setItem('authToken', resp.data.token);
+    api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`
+    return resp.data.user
+  }
+  catch (e) {
+    return ({ username: "", id: null })
+  }
 }
 
 export const verifyUser = async () => {
   const token = localStorage.getItem('authToken');
+
   if (token) {
     api.defaults.headers.common.authorization = `Bearer ${token}`
     const resp = await api.get('/verify');
@@ -82,7 +93,7 @@ export const showLocation = async (id, getData) => {
   return resp.data
 }
 
-export const postLocation = async (id,postData) => {
+export const postLocation = async (id, postData) => {
   const resp = await api.post(`/user/${id}/location`, postData);
   return resp.data
 }
