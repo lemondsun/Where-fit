@@ -7,7 +7,7 @@ export default function HomePage(props) {
 
       {props.locations && (
         <>
-          <h1>Register or Login to view more</h1>
+          <h1>Login to view more</h1>
           {props.locations.map(location => (
             <div key={location.id} className="home-locations">
               <img className="home-img" src={location.image_url} alt={location.name}></img>
