@@ -15,7 +15,7 @@ export default class UserInfo extends Component {
       <div>
         <form  onSubmit={(e) => {
           e.preventDefault()
-          this.props.handleUpdateUser(`${this.props.currentUser.id}`,this.state)
+          this.props.handleUpdateUser(this.props.id,this.state)
         }}>
           <label htmlFor="image_url">Pofile Picture</label>
           <input

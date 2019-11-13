@@ -19,9 +19,11 @@ userRouter.route('/:id')
   }
 })
 
-  .put(restrict, async (req, res, next) => {
+  .patch(restrict, async (req, res, next) => {
     try {
-      const user = await User.findByPk(req.body.id);
+      console.log(req.params)
+      const user = await User.findByPk(req.params.id);
+      console.log(user.dataValues)
       req.body.password_digest =  user.password_digest
       await user.update(req.body)
       res.json(user)
