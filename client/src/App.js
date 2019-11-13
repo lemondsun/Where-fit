@@ -3,7 +3,7 @@ import './App.css';
 import { Route, Link, withRouter } from 'react-router-dom';
 import { indexHome, showHome, loginUser, registerUser, verifyUser, showUser, putUser, destroyUser, indexLocation, showLocation, postLocation, putLocation, destroyLocation, indexActivity, showActivity, postActivity, putActivity, destroyActivity } from './services/api-helper';
 import LoginForm from './images/LoginForm';
-
+import UserInfo from '.components/UserInfo';
 import RegisterForm from './components/RegisterForm';
 import HomePage from './components/HomePage';
 import Header from './components/Header';
