@@ -72,7 +72,16 @@ export const showUser = async (id, getData) => {
 
 export const putUser = async (id, putData) => {
   const resp = await api.put(`/user/${id}`, putData);
+  
   return resp.data
+}
+export const patchUser = async (id, putData) => {
+  try{const response = await api.patch(`/user/${id}`,putData);
+    return response.data
+  }catch (e) {
+    console.log(`😱 Axios request failed: ${e}`);
+  }
+  
 }
 
 export const destroyUser = async (id, deleteData) => {
