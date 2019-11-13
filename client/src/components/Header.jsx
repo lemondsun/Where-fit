@@ -13,14 +13,14 @@ export default function Header(props) {
 
       {props.user.username && (
         <div id="header-links-loggedin">
-
+            <h2 id="header-welcome"
+            className="header-link">Welcome {props.user.username}</h2>
           <Link id="header-user" className="header-link"
             to={`/user/${props.user.id}`}>User Info</Link>
           <button
             className="header-logout"
             onClick={props.handleLogout}>Logout</button>
-          <h2 id="header-welcome"
-            className="header-link">Welcome {props.user.username}</h2>
+          
         </div>
       )}
       {!props.user.username && (

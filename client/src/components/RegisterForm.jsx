@@ -13,11 +13,11 @@ export default class RegisterForm extends Component {
   
   render() {
     return (
-      <form onSubmit={(e) => {
+      <form className="form-div" onSubmit={(e) => {
         e.preventDefault()
         this.props.handleRegister(this.state)
       }}>
-        <h2>Register</h2>
+        <h2>Register</h2><div className="login-register">
         <label htmlFor="username">username</label>
         <input
           type="text"
@@ -33,7 +33,7 @@ export default class RegisterForm extends Component {
           id="password"
           value={this.state.password}
           onChange={this.handleChange}
-        />
+        /></div>
         <button>Submit</button>
 
       </form>

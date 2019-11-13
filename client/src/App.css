@@ -1,9 +1,7 @@
-css
-
 body{
   margin: 0 auto;
 }
-
+/*In general CSS, front page*/
 #header {
 background: rgb(220,225,226);
 background: linear-gradient(90deg, rgba(220,225,226,1) 0%, rgba(154,217,236,1) 25%, rgba(106,212,243,1) 75%, rgba(45,205,253,1) 100%);
@@ -13,13 +11,8 @@ justify-content: space-between;
 color: black;
 }
 
-#header-link-div{
-  padding-left: 15px;
-}
-
 .home-button {
   height: 35px;
-  /* background: #3d85c6; */
   background: linear-gradient(#3d85c6, #073763);
   color: white;
   border-radius: 5px;
@@ -28,6 +21,10 @@ color: black;
 }
 
 button:focus {outline:0;}
+
+#header-link-div{
+  padding-left: 15px;
+}
 
 #header-login{
   padding-right: 15px;
@@ -43,8 +40,36 @@ button:focus {outline:0;}
   color: white;
 }
 
+/*Log in/register page*/
+.login-register{
+  margin:10%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
-#footer {
+.form-div{
+text-align: center;
+margin-bottom: 5%;
+}
+
+/*While logged in*/
+#header-links-loggedin{
+  display: block;
+  margin-left: -7%;
+  text-align: center;
+}
+
+#header-user {
+  margin-right: 5px;
+}
+
+.header-logout{
+  height: 30px;
+  margin-left: 57px;
+}
+
+footer{
   background: rgb(220,225,226);
   background: linear-gradient(5deg, rgba(220,225,226,1) 19%, rgba(32,186,232,1) 40%, rgba(3,167,215,1) 80%, rgba(0,193,251,1) 100%);
   height: 50px;

@@ -14,11 +14,11 @@ export default class LoginForm extends Component {
   
   render() {
     return (
-      <form onSubmit={(e) => {
+      <form className="form-div" onSubmit={(e) => {
         e.preventDefault()
         this.props.handleLogin(this.state)
       }}>
-        <h2>Login</h2>
+        <h2>Login</h2><div className="login-register">
         <label htmlFor="username">username</label>
         <input
           type="text"
@@ -35,9 +35,9 @@ export default class LoginForm extends Component {
           value={this.state.password}
           onChange={this.handleChange}
         />
-        <button>Submit</button>
-        <Link to='/register'>Register</Link>
-      </form>
+        <button>Submit</button></div>
+        Click <Link to='/register'>here</Link> to make an account
+        </form>
     )
   }
 }
