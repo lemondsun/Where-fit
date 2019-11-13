@@ -88,7 +88,7 @@ console.log('im in loactaionadd', this.props)
         value={this.state.state}
         onChange={this.handleChange}
       />
-      <label htmlFor="zip">State</label>
+      <label htmlFor="zip">Zip</label>
       <input
         type="text"
         name="zip"

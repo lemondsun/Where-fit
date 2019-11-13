@@ -47,6 +47,7 @@ locationRouter.route('/:id')
 
   .put(restrict, async (req, res, next) => {
     try {
+      console.log(req)
       const location = await Location.findByPk(req.body.id);
       await location.update(req.body)
       res.json(location)

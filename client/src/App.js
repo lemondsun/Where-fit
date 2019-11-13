@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Route, Link, withRouter } from 'react-router-dom';
 import { indexHome, showHome, loginUser, registerUser, verifyUser, showUser, putUser, destroyUser, indexLocation, showLocation, postLocation, putLocation, destroyLocation, indexActivity, showActivity, postActivity, putActivity, destroyActivity } from './services/api-helper';
-import LoginForm from './components/LoginForm';
+import LoginForm from './images/LoginForm';
 
 import RegisterForm from './components/RegisterForm';
 import HomePage from './components/HomePage';
@@ -11,21 +11,27 @@ import Footer from './components/Footer';
 import ActivityList from './components/ActivityList';
 import LocationList from './components/LocationList';
 import LocationAddForm from './components/LocationAddForm';
+import LocationEdit from './components/LocationEdit';
 
 class App extends Component {
   state = {
     currentUser: {},
     locations: [],
-    userLocations: [],
+    allLocations: [],
     activities: [],
     user_id: null,
     location_id: null,
     activity_id: null,
-    currentLocation: null
+    currentLocation: {}
   }
 
   // let getData = { "user_id": this.state.currentUser.Id }
 
+  componentDidMount = async () => {
+    // this.handleVerify()
+    const allLocations = await indexHome()
+    this.setState({ allLocations })
+  }
 
   handleLogin = async (loginData) => {
     const resp = await loginUser(loginData);
@@ -33,31 +39,29 @@ class App extends Component {
     this.setState({ currentUser })
     const getData = { "user_id": this.state.currentUser.id }
     if (this.state.currentUser.username) {
-      console.log('here', this.state.currentUser)
       const getlocations = async () => {
-        console.log({ "user_id": this.state.currentUser.id }, "hello2")
         const locations = await indexLocation(this.state.currentUser.id, getData)
-
-        console.log(locations, "hello", locations)
         this.setState({ locations })
       }
-
       getlocations()
       this.props.history.push(`/user/${this.state.currentUser.id}/location`)
     }
     else {
       this.props.history.push(`/login`)
     }
-
   }
-
 
   handleRegister = async (registerData) => {
     const currentUser = await registerUser(registerData);
     this.setState({ currentUser })
     if (this.state.currentUser.username) {
       this.props.history.push(`/user/${this.state.currentUser.id}/location`)
-
+      const getlocations = async () => {
+        const getData = this.state.currentUser.id
+        const locations = await indexLocation(this.state.currentUser.id, getData)
+        this.setState({ locations })
+      }
+      getlocations()
     }
     else {
       this.props.history.push(`/register`)
@@ -90,14 +94,7 @@ class App extends Component {
     this.props.history.push(`/`)
   }
 
-  componentDidMount = async () => {
-    // this.handleVerify()
-
-    const locations = await indexHome()
-    this.setState({ locations })
-  }
   handleAddLocation = async (postdata) => {
-    console.log('in handleaddlocation', postdata)
     const currentLocation = await postLocation(this.state.currentUser.id, postdata);
     this.setState(prevState => ({
       locations: [...prevState.locations, currentLocation]
@@ -105,20 +102,25 @@ class App extends Component {
     this.props.history.push(`/user/${this.state.currentUser.id}/location`)
   }
 
-  handleEditLocation = async () => {
-    const currentLocation = await putLocation();
+  handleLocationClick = async (id) => {
+    console.log("selected location id", id)
+    const currentLocation = await showLocation(id,id);
     if (currentLocation) {
       this.setState({ currentLocation })
     }
-    this.props.history.push(`/user/${this.state.currentUser.id}/location`)
+    console.log("selected location", currentLocation)
+    this.props.history.push(`/user/${this.state.currentUser.id}/location/${this.state.currentLocation.id}/edit`)
   }
 
-  ShowLocation = async () => {
-    const currentLocation = await showLocation();
-    if (currentLocation) {
-      this.setState({ currentLocation })
+  handleEditLocation = async (id, putData) => {
+    const updatedLocation = await putLocation(id,putData);
+    if (updatedLocation) {
+      this.setState({ updatedLocation })
+      this.setState(prevState => ({
+        locations: prevState.locations.map(location => location.id === parseInt(updatedLocation.id) ? updatedLocation : location)
+      }))
     }
-    this.props.history.push(`/user/${this.state.currentUser.id}/location/${this.state.currentLocation.id}`)
+    this.props.history.push(`/user/${this.state.currentUser.id}/location`)
   }
 
   render() {
@@ -128,6 +130,8 @@ class App extends Component {
           user={this.state.currentUser}
           handleLogout={this.handleLogout}
         />
+        <Route exact path='/' render={() => <HomePage locations={this.state.allLocations} />} />
+
         <Route exact path='/login' render={() => <LoginForm
           handleLogin={this.handleLogin}
         />} />
@@ -136,22 +140,36 @@ class App extends Component {
           handleRegister={this.handleRegister}
         />} />
 
-
-        <Route exact path='/' render={() => <HomePage locations={this.state.locations} />} />
-        {/* <Route path='/:id' render={() => <HomePage locations={this.state.locations}  />} /> */}
-
-        {/* //location page route  */}
         <Route exact path='/user/:id/location'
           render={() =>
             <LocationList
               locations={this.state.locations}
-              currentUser ={this.state.currentUser}
+              currentUser={this.state.currentUser}
+              handleLocationClick={this.handleLocationClick}
             />} />
+
         <Route exact path='/user/:id/location/add'
           render={() => <LocationAddForm
             currentUser={this.state.currentUser}
             handleAddLocation={this.handleAddLocation} />} />
+        
 
+
+
+
+        <Route exact path='/user/:id/location/:id/edit'
+          render={(props) => <LocationEdit
+            currentUser={this.state.currentUser}
+            locations={this.state.locations}
+            locationId={props.match.params.id}
+            handleEditLocation={this.handleEditLocation} />} />
+
+        {/* <Route exact path='/user/:id/location/add'
+          render={() => <LocationAddForm
+            currentUser={this.state.currentUser}
+            handleAddLocation={this.handleAddLocation} />} /> */}
+
+        {/* <Link to={`/user/${props.currentUser.id}/location/${location.id}/delete`}><button>Delete</button></Link> */}
 
         {/* <Route exact path='/register' render={() => <RegisterForm user={this.state.user} handleChange={this.handleChange} handleRegister={this.handleRegister}/>}/> */}
 
