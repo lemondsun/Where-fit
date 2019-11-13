@@ -3,7 +3,7 @@ import './App.css';
 import { Route, Link, withRouter } from 'react-router-dom';
 import { indexHome, showHome, loginUser, registerUser, verifyUser, showUser, putUser, destroyUser, indexLocation, showLocation, postLocation, putLocation, destroyLocation, indexActivity, showActivity, postActivity, putActivity, destroyActivity } from './services/api-helper';
 import LoginForm from './images/LoginForm';
-
+import UserInfo from './components/UserInfo';
 import RegisterForm from './components/RegisterForm';
 import HomePage from './components/HomePage';
 import Header from './components/Header';
@@ -123,6 +123,14 @@ class App extends Component {
     }
     this.props.history.push(`/user/${this.state.currentUser.id}/location`)
   }
+  handleUpdateUser = async (id, putData) => {
+    console.log(id,putData, "yurr")
+    const currentUser = await putUser(id, putData);
+    if (currentUser) {
+      this.setState({ currentUser });
+    }
+    this.props.history.push(`/user`);
+  };
 
   render() {
     return (
@@ -165,6 +173,16 @@ class App extends Component {
           render={() => <LocationAddForm
             currentUser={this.state.currentUser}
             handleAddLocation={this.handleAddLocation} />} /> */}
+            <Route
+            exact
+              path="/user/:id"
+              render={() => (
+                <UserInfo
+                  currentUser={this.state.currentUser}
+                  handleUpdateUser={this.handleUpdateUser}
+                />
+              )}
+            />
 
         {/* <Link to={`/user/${props.currentUser.id}/location/${location.id}/delete`}><button>Delete</button></Link> */}
 
