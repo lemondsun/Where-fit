@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 export default class LocationAddForm extends Component {
   state = {
-    name,
-    date,
-    description,
-    duration,
-    recommended,
-    cost,
-    completion,
-    fitness_level
+    name:'',
+    date:'',
+    description:'',
+    duration:'',
+    recommended:'',
+    cost:'',
+    completion:'',
+    fitness_level:''
   }
 
   handleChange = (e) => {

@@ -15,7 +15,7 @@ export default function LocationList(props) {
       <h4>activity.cost</h4>
       <h4>activity.completion</h4>
       <h4>activity.fitness_level</h4>
-        <Link to={`/user/${props.currentUser.id}/location/${location.id}/activity/{activity.id}edit`}>
+        <Link to={`/user/${props.currentUser.id}/location/${props.locationId}/activity/${activity.id}/edit`}>
           <button
             id={activity.id}>Edit</button>
         </Link>
