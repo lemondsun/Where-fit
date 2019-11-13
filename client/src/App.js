@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Route, Link, withRouter } from 'react-router-dom';
 import { indexHome, showHome, loginUser, registerUser, verifyUser, showUser, putUser, destroyUser, indexLocation, showLocation, postLocation, putLocation, destroyLocation, indexActivity, showActivity, postActivity, putActivity, destroyActivity } from './services/api-helper';
-import LoginForm from './images/LoginForm';
+import LoginForm from './components/LoginForm';
 import UserInfo from './components/UserInfo';
 import RegisterForm from './components/RegisterForm';
 import HomePage from './components/HomePage';
@@ -124,13 +124,26 @@ class App extends Component {
     this.props.history.push(`/user/${this.state.currentUser.id}/location`)
   }
   handleUpdateUser = async (id, putData) => {
-    console.log(id,putData, "yurr")
     const currentUser = await putUser(id, putData);
     if (currentUser) {
       this.setState({ currentUser });
     }
     this.props.history.push(`/user`);
   };
+
+  handleLocationDelete = async (event) => {
+    const id = event.target.id;
+    console.log("dleteid", id)
+    const currentlocation = await destroyLocation(id, id);
+    this.setState(prevState => ({
+      locations: prevState.locations.filter(location => {
+        return location.id !== parseInt(id)
+      })
+    }))
+    this.props.history.push(`/user/${this.state.currentUser.id}/location`)
+
+  }
+
 
   render() {
     return (
@@ -155,6 +168,7 @@ class App extends Component {
               locations={this.state.locations}
               currentUser={this.state.currentUser}
               handleLocationClick={this.handleLocationClick}
+              handleLocationDelete={this.handleLocationDelete}
             />} />
 
         <Route exact path='/user/:id/location/add'
@@ -167,7 +181,10 @@ class App extends Component {
             currentUser={this.state.currentUser}
             locations={this.state.locations}
             locationId={props.match.params.id}
-            handleEditLocation={this.handleEditLocation} />} />
+            handleEditLocation={this.handleEditLocation}
+ 
+          />
+          } />
 
         {/* <Route exact path='/user/:id/location/add'
           render={() => <LocationAddForm

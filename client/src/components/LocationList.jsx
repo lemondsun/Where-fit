@@ -19,13 +19,11 @@ export default function LocationList(props) {
           id={location.id}>Edit</button>
       </Link>
 
+      <Link to="/">
+        <button onClick={props.handleLocationDelete}
+          id={location.id}>Delete</button>
+      </Link>
 
-
-
-      
-      {/* <Link to={`/user/${props.currentUser.id}/location/${location.id}/delete` }>
-      <button>Delete</button>
-      </Link> */}
     </div>
   );
 
