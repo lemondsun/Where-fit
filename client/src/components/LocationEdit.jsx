@@ -13,7 +13,6 @@ export default class LocationEdit extends Component {
     zip: null
   }
   setFormData = () => {
-    console.log("set form",this.props)
     if (this.props.locations.length) {
       const {
         id,

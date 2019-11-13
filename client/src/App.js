@@ -104,7 +104,8 @@ class App extends Component {
 
   handleLocationClick = async (id) => {
     console.log("selected location id", id)
-    const currentLocation = await showLocation(id,id);
+    const currentLocation = await showLocation(id, id);
+    console.log("selected location current", currentLocation)
     if (currentLocation) {
       this.setState({ currentLocation })
     }
@@ -152,10 +153,6 @@ class App extends Component {
           render={() => <LocationAddForm
             currentUser={this.state.currentUser}
             handleAddLocation={this.handleAddLocation} />} />
-        
-
-
-
 
         <Route exact path='/user/:id/location/:id/edit'
           render={(props) => <LocationEdit
