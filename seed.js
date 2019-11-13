@@ -29,37 +29,37 @@ const main = async () => {
   });
 
   const location1 = await Location.create({
-    name: 'here',
-    image_url: 'https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters_opt/p-bill-and-teds-excellent-adventure-keanu-reeves.jpg',
-    description: 'description 1',
-    address_line1: 'address line 1',
+    name: 'Ridgewood Highland Park',
+    image_url: 'https://www.nycgovparks.org/photo_gallery/full_size/22659.jpg',
+    description: 'Ridgewood Highland Park and the Reservoir sit on a ridge formed by the Wisconsin ice',
+    address_line1: 'Jackie Robinson Pkwy',
     address_line2: 'address line 2',
-    city: 'nyc',
-    state: 'ny',
-    zip: '07945'
+    city: 'Brooklyn',
+    state: 'NY',
+    zip: '11208'
   });
 
   const location2 = await Location.create({
-    name: 'There',
-    image_url: 'https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters_opt/p-bill-and-teds-excellent-adventure-keanu-reeves.jpg',
-    description: 'description 2',
-    address_line1: 'address line 21',
+    name: 'McCarren Park',
+    image_url: 'https://www.nycgo.com/images/venues/5823/mccarren-park-christopher-postlewaite-7836__large.jpg',
+    description: `McCarren Park is a public park in Brooklyn, New York City.`,
+    address_line1: '776 Lorimer St,',
     address_line2: 'address line 22',
-    city: 'Atlanta',
-    state: 'ga',
-    zip: '0794555'
+    city: 'Brooklyn',
+    state: 'NY',
+    zip: '11222'
   });
   
 
   const location3 = await Location.create({
-    name: 'somewhere',
-    image_url: 'https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters_opt/p-bill-and-teds-excellent-adventure-keanu-reeves.jpg',
-    description: 'description 3',
-    address_line1: 'address line 31',
+    name: 'John V. Lindsay East River Park',
+    image_url: 'https://www.nycgovparks.org/photo_gallery/full_size/23039.jpg',
+    description: 'East River Park, also called John V. Lindsay East River Park, is 57.5-acre public park located on the Lower East Side of Manhattan, part of the New York City Department of Parks and Recreation.',
+    address_line1: 'FDR Dr, New York',
     address_line2: 'address line 32',
-    city: 'el paso',
-    state: 'tx',
-    zip: '0795'
+    city: 'New York',
+    state: 'NY',
+    zip: '10009'
   });
 
 
@@ -71,36 +71,36 @@ const main = async () => {
 
 
   const activity1 = await Activity.create({
-    name: 'do something',
+    name: 'Basketball',
     date: today,
-    description: 'doing something',
+    description: 'Full Court Ball 5 on 5',
     duration: '1hr',
-    recommended: 'no',
-    cost: 'too high',
-    completion: 'no',
-    fitness_level: 1
+    recommended: 'yes',
+    cost: 'free',
+    completion: 'yes',
+    fitness_level: 8
   });
 
   const activity2 = await Activity.create({
-    name: 'do something else',
-    date: today,
-    description: 'coding',
-    duration: 'forever',
-    recommended: 'no',
-    cost: '$1',
+    name: 'yoga',
+    date: 9/12/19,
+    description: 'Yoga',
+    duration: '30 mins',
+    recommended: 'Yes',
+    cost: '$30',
     completion: 'no',
-    fitness_level: 2
+    fitness_level: 4
   });
 
   const activity3 = await Activity.create({
-    name: 'programming',
-    date: today,
-    description: 'project 3',
-    duration: 'neverending',
-    recommended: 'yes',
-    cost: '$10',
-    completion: 'no',
-    fitness_level: 6
+    name: 'Running',
+    date: 11/11/19,
+    description: 'Fast paced sprints at low intervals.',
+    duration: '45 mins',
+    recommended: 'no',
+    cost: 'free',
+    completion: 'yes',
+    fitness_level: 8
   });
 
 
