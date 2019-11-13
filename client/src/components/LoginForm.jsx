@@ -35,8 +35,8 @@ export default class LoginForm extends Component {
           value={this.state.password}
           onChange={this.handleChange}
         />
-        <button>Submit</button></div>
-        Click <Link to='/register'>here</Link> to make an account
+        <button className="login">Submit</button></div>
+        <button className="register"><Link to='/register'>Register Account</Link></button>
         </form>
     )
   }
