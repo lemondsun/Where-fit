@@ -25,7 +25,6 @@ export default class LocationAddForm extends Component {
 
 
   render() {
-console.log('im in loactaionadd', this.props)
   return (
     <form onSubmit={(e) => {
       e.preventDefault()

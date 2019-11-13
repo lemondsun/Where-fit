@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import './App.css';
 import { Route, Link, withRouter } from 'react-router-dom';
 import { indexHome, showHome, loginUser, registerUser, verifyUser, showUser, patchUser, destroyUser, indexLocation, showLocation, postLocation, putLocation, destroyLocation, indexActivity, showActivity, postActivity, putActivity, destroyActivity } from './services/api-helper';
-import LoginForm from './images/LoginForm';
-import { indexHome, showHome, loginUser, registerUser, verifyUser, showUser, putUser, destroyUser, indexLocation, showLocation, postLocation, putLocation, destroyLocation, indexActivity, showActivity, postActivity, putActivity, destroyActivity } from './services/api-helper';
 import LoginForm from './components/LoginForm';
 import UserInfo from './components/UserInfo';
 import RegisterForm from './components/RegisterForm';
 import HomePage from './components/HomePage';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ActivityList from './components/ActivityList';
 import LocationList from './components/LocationList';
 import LocationAddForm from './components/LocationAddForm';
 import LocationEdit from './components/LocationEdit';
+import ActivityList from './components/ActivityList';
+import ActivityAddForm from './components/ActivityAddForm';
+import ActivityEdit from './components/ActivityEdit';
 
 class App extends Component {
   state = {
@@ -24,7 +24,8 @@ class App extends Component {
     user_id: null,
     location_id: null,
     activity_id: null,
-    currentLocation: {}
+    currentLocation: {},
+    currentActivity: {}
   }
 
   // let getData = { "user_id": this.state.currentUser.Id }
@@ -96,38 +97,7 @@ class App extends Component {
     this.props.history.push(`/`)
   }
 
-  handleAddLocation = async (postdata) => {
-    const currentLocation = await postLocation(this.state.currentUser.id, postdata);
-    this.setState(prevState => ({
-      locations: [...prevState.locations, currentLocation]
-    }))
-    this.props.history.push(`/user/${this.state.currentUser.id}/location`)
-  }
-
-  handleLocationClick = async (id) => {
-    console.log("selected location id", id)
-    const currentLocation = await showLocation(id, id);
-    console.log("selected location current", currentLocation)
-    if (currentLocation) {
-      this.setState({ currentLocation })
-    }
-    console.log("selected location", currentLocation)
-    this.props.history.push(`/user/${this.state.currentUser.id}/location/${this.state.currentLocation.id}/edit`)
-  }
-
-  handleEditLocation = async (id, putData) => {
-    const updatedLocation = await putLocation(id,putData);
-    if (updatedLocation) {
-      this.setState({ updatedLocation })
-      this.setState(prevState => ({
-        locations: prevState.locations.map(location => location.id === parseInt(updatedLocation.id) ? updatedLocation : location)
-      }))
-    }
-    this.props.history.push(`/user/${this.state.currentUser.id}/location`)
-  }
   handleUpdateUser = async (id, putData) => {
-
-    console.log(id, putData, "yurr")
     debugger;
     const currentUser = await patchUser(id, putData);
     if (currentUser) {
@@ -136,9 +106,38 @@ class App extends Component {
     this.props.history.push(`/user`);
   };
 
+
+
+  handleAddLocation = async (postdata) => {
+    const currentLocation = await postLocation(this.state.currentUser.id, postdata);
+    this.setState(prevState => ({
+      locations: [...prevState.locations, currentLocation]
+    }))
+    this.props.history.push(`/user/${this.state.currentUser.id}/location`)
+  }
+
+  // handleLocationClick = async (id) => {
+  //   const currentLocation = await showLocation(id, id);
+  //   if (currentLocation) {
+  //     this.setState({ currentLocation })
+  //   }
+  //   this.props.history.push(`/user/${this.state.currentUser.id}/location/${this.state.currentLocation.id}/edit`)
+  // }
+
+  handleEditLocation = async (id, putData) => {
+    const updatedLocation = await putLocation(id, putData);
+    if (updatedLocation) {
+      this.setState({ updatedLocation })
+      this.setState(prevState => ({
+        locations: prevState.locations.map(location => location.id === parseInt(updatedLocation.id) ? updatedLocation : location)
+      }))
+    }
+    this.props.history.push(`/user/${this.state.currentUser.id}/location`)
+  }
+
+
   handleLocationDelete = async (event) => {
     const id = event.target.id;
-    console.log("dleteid", id)
     const currentlocation = await destroyLocation(id, id);
     this.setState(prevState => ({
       locations: prevState.locations.filter(location => {
@@ -146,8 +145,47 @@ class App extends Component {
       })
     }))
     this.props.history.push(`/user/${this.state.currentUser.id}/location`)
-
   }
+
+
+
+
+
+  handleAddActivity = async (locationId, postdata) => {
+    const currentActivity = await postActivity(locationId, postdata);
+    this.setState(prevState => ({
+      activities: [...prevState.activities, currentActivity]
+    }))
+    this.props.history.push(`/user/${this.state.currentUser.id}/location/${locationId}/activity`)
+  }
+
+ handleEditActivity = async (id, putData) => {
+    const updatedActivity = await putActivity(id, putData);
+    if (updatedActivity) {
+      this.setState({ updatedActivity })
+      this.setState(prevState => ({
+        locations: prevState.activities.map(activity => activity.id === parseInt(updatedActivity.id) ? updatedActivity : activity)
+      }))
+    }
+    this.props.history.push(`/user/${this.state.currentUser.id}/location/${this.props.location_id}/activity`)
+  }
+
+
+  handleActivityDelete = async (event) => {
+    const id = event.target.id;
+    const currentActivity = await destroyActivity(id, id);
+    this.setState(prevState => ({
+      activities: prevState.activities.filter(activity => {
+        return activity.id !== parseInt(id)
+      })
+    }))
+    this.props.history.push(`/user/${this.state.currentUser.id}/location/${this.props.location_id}/activity`)
+  }
+
+
+
+
+
 
 
   render() {
@@ -167,12 +205,24 @@ class App extends Component {
           handleRegister={this.handleRegister}
         />} />
 
+        <Route
+          exact
+          path="/user/:id"
+          render={(props) => (
+            <UserInfo
+              id={props.match.params.id}
+              currentUser={this.state.currentUser}
+              handleUpdateUser={this.handleUpdateUser}
+            />
+          )}
+        />
+
         <Route exact path='/user/:id/location'
           render={() =>
             <LocationList
               locations={this.state.locations}
               currentUser={this.state.currentUser}
-              handleLocationClick={this.handleLocationClick}
+              // handleLocationClick={this.handleLocationClick}
               handleLocationDelete={this.handleLocationDelete}
             />} />
 
@@ -187,31 +237,33 @@ class App extends Component {
             locations={this.state.locations}
             locationId={props.match.params.id}
             handleEditLocation={this.handleEditLocation}
- 
           />
           } />
 
-        {/* <Route exact path='/user/:id/location/add'
-          render={() => <LocationAddForm
-            currentUser={this.state.currentUser}
-            handleAddLocation={this.handleAddLocation} />} /> */}
-            <Route
-            exact
-              path="/user/:id"
-              render={(props) => (
-                <UserInfo
-                  id={props.match.params.id}
-                  currentUser={this.state.currentUser}
-                  handleUpdateUser={this.handleUpdateUser}
-                />
-              )}
-            />
+        
 
-        {/* <Link to={`/user/${props.currentUser.id}/location/${location.id}/delete`}><button>Delete</button></Link> */}
 
-        {/* <Route exact path='/register' render={() => <RegisterForm user={this.state.user} handleChange={this.handleChange} handleRegister={this.handleRegister}/>}/> */}
+<Route exact path='/user/:id/location/:id/activity'
+          render={(props) => <ActivityList
+              handleActivityClick={this.handleActivityClick}
+              handleActivityDelete={this.handleActivityDelete}
+              locationId={props.match.params.locationId}
+            />} />
+        
+        <Route exact path='/user/:id/location/:id/activity/add'
+          render={(props) => <ActivityAddForm
+            locationId={props.match.params.locationId}
+            handleAddLocation={this.handleAddActivity} />} />
 
-        {/* <Route path={`/user/${this.state.currentUser.id}/location/${${this.state.currentlocation.id}}/activity`} render={() => <AcitivtyList activities={this.state.activities} />} /> */}
+        <Route exact path='/user/:id/location/:id/activity/:id/edit'
+          render={(props) => <ActivityEdit
+            activities={this.state.activities}
+            activityId={props.match.params.id}
+            handleEditLocation={this.handleEditLocation}
+          />
+          } />
+        
+
 
         <Footer />
       </div>
