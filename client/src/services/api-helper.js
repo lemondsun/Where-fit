@@ -84,13 +84,12 @@ export const destroyUser = async (id, deleteData) => {
 
 
 export const indexLocation = async (id, getData) => {
-  console.log("test", getData)
   const resp = await api.get(`/user/${id}/location`, getData);
   return resp.data
 }
 
 export const showLocation = async (id, getData) => {
-  const resp = await api.get(`/user/${id}/location/${id}`, getData);
+  const resp = await api.get(`/user/:id/location/${id}`, getData);
   return resp.data
 }
 
@@ -100,7 +99,7 @@ export const postLocation = async (id, postData) => {
 }
 
 export const putLocation = async (id, putData) => {
-  const resp = await api.put(`/user/${id}/location/${id}`, putData);
+  const resp = await api.put(`/user/id/location/${id}`, putData);
   return resp.data
 }
 

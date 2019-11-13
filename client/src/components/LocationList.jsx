@@ -4,7 +4,6 @@ import  { Link} from 'react-router-dom'
 
 
 export default function LocationList(props) {
-  console.log(props)
    
   const items = props.locations.map((location) =>
     <div id="locationBox" key= {location.id}>
@@ -15,8 +14,18 @@ export default function LocationList(props) {
       <h4>{location.city}</h4>
       <h4>{location.state}</h4>
       <h4>{location.zip}</h4>
-      <button>Edit</button>
+      {/* <button onClick={props.showOneLocation(location.id)}>Edit</button> */}
+      <Link to={`/user/${props.currentUser.id}/location/${location.id}/edit`}>
+      <button onClick={props.handleLocationClick} id={location.id}>Edit</button>
+      </Link>
+
+
+
+
+      
+      {/* <Link to={`/user/${props.currentUser.id}/location/${location.id}/delete` }>
       <button>Delete</button>
+      </Link> */}
     </div>
   );
 
