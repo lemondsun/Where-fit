@@ -122,6 +122,14 @@ class App extends Component {
     }
     this.props.history.push(`/user/${this.state.currentUser.id}/location`)
   }
+  handleUpdateUser = async (id, putData) => {
+    console.log(id,putData, "yurr")
+    const currentUser = await putUser(id, putData);
+    if (currentUser) {
+      this.setState({ currentUser });
+    }
+    this.props.history.push(`/user`);
+  };
 
   render() {
     return (
@@ -168,6 +176,16 @@ class App extends Component {
           render={() => <LocationAddForm
             currentUser={this.state.currentUser}
             handleAddLocation={this.handleAddLocation} />} /> */}
+            <Route
+            exact
+              path="/user/:id"
+              render={() => (
+                <UserInfo
+                  currentUser={this.state.currentUser}
+                  handleUpdateUser={this.handleUpdateUser}
+                />
+              )}
+            />
 
         {/* <Link to={`/user/${props.currentUser.id}/location/${location.id}/delete`}><button>Delete</button></Link> */}
 
