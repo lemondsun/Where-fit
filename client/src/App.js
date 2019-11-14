@@ -146,6 +146,7 @@ class App extends Component {
   }
 
   handleAddActivity = async (locationId, postdata) => {
+    debugger
     console.log('handleAddActivity ', this.state.currentUser.id, locationId, postdata)
     const currentActivity = await postActivity(this.state.currentUser.id, locationId, postdata);
     this.setState(prevState => ({
@@ -195,7 +196,7 @@ class App extends Component {
           user={this.state.currentUser}
           handleLogout={this.handleLogout}
         />
-        <Route exact path='/' render={() => <HomePage locations={this.state.allLocations} currentUser={this.state.currentUser}/>} />
+        <Route exact path='/' render={() => <HomePage locations={this.state.allLocations} currentUser={this.state.currentUser} />} />
 
         <Route exact path='/login' render={() => <LoginForm
           handleLogin={this.handleLogin}

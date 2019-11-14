@@ -135,6 +135,7 @@ export const showActivity = async (id, getData) => {
 
 export const postActivity = async (userId, locationId, postData) => {
   console.log('postActivity', userId, locationId, postData)
+  debugger
   const resp = await api.post(`/user/${userId}/location/${locationId}/activity`, postData);
   return resp.data
 }
