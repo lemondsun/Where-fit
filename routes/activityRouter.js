@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const activityRouter = Router();
+const activityRouter = Router({ mergeParams: true });
 const { Activity } = require('../models.js')
 const { restrict } = require('../services/auth')
 
@@ -7,8 +7,7 @@ activityRouter.get('/', restrict, async (req, res, next) => {
   try {
     const activity = await Activity.findAll({
       where: {
-        ...req.body,
-        locationId: req.params.location_id,
+        location_id: req.params.id
       },
     }
     )
@@ -21,8 +20,9 @@ activityRouter.get('/', restrict, async (req, res, next) => {
 
 activityRouter.post('/', restrict, async (req, res, next) => {
   try {
+    console.log('post', req.body)
     const activity = await Activity.create({
-      ...req.body,
+      // ...req.body,
       locationId: req.body.id,
     });
     res.json(activity);

@@ -2,15 +2,15 @@ import React, { Component } from 'react'
 
 export default class LocationEdit extends Component {
   state = {
-    id: null,
-    name: null,
-    image_url: null,
-    description: null,
-    address_line1: null,
-    address_line2: null,
-    city: null,
-    state: null,
-    zip: null
+    id: '',
+    name: '',
+    image_url: '',
+    description: '',
+    address_line1: '',
+    address_line2: '',
+    city: '',
+    state: '',
+    zip: ''
   }
   setFormData = () => {
     if (this.props.locations.length) {
@@ -30,15 +30,15 @@ export default class LocationEdit extends Component {
       })
 
       this.setState({
-        id,
-        name,
-        image_url,
-        description,
-        address_line1,
-        address_line2,
-        city,
-        state,
-        zip
+        id: '',
+        name: '',
+        image_url: '',
+        description: '',
+        address_line1: '',
+        address_line2: '',
+        city: '',
+        state: '',
+        zip: ''
       })
     }
   }

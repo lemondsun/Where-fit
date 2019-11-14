@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 
 export default class ActivityEdit extends Component {
   state = {
-    name: null,
-    date: null,
-    description: null,
-    duration: null,
-    recommended: null,
-    cost: null,
-    completion: null,
-    fitness_level: null
+    name: '',
+    date: '',
+    description: '',
+    duration: '',
+    recommended: '',
+    cost: '',
+    completion: '',
+    fitness_level: ''
   }
   setFormData = () => {
     if (this.props.activities.length) {
@@ -28,14 +28,14 @@ export default class ActivityEdit extends Component {
       })
 
       this.setState({
-        name,
-        date,
-        description,
-        duration,
-        recommended,
-        cost,
-        completion,
-        fitness_level
+        name: '',
+        date: '',
+        description: '',
+        duration: '',
+        recommended: '',
+        cost: '',
+        completion: '',
+        fitness_level: ''
       })
     }
   }
@@ -61,7 +61,7 @@ export default class ActivityEdit extends Component {
         e.preventDefault()
         this.props.handleEditActivity(this.props.activityid, this.state)
       }}>
-        <h2>Location Edit</h2>
+        <h2>Activity Update</h2>
         <label htmlFor="name">Activity Name</label>
         <input
           type="text"
@@ -70,15 +70,15 @@ export default class ActivityEdit extends Component {
           value={this.state.name}
           onChange={this.handleChange}
         />
-        <label htmlFor="date">Location Description</label>
+        <label htmlFor="date">Date on Activity</label>
         <input
-          type="text"
+          type="date"
           name="date"
           id="date"
           value={this.state.date}
           onChange={this.handleChange}
         />
-        <label htmlFor="description">Location Description</label>
+        <label htmlFor="description">Activity Description</label>
         <input
           type="text"
           name="description"
@@ -86,7 +86,7 @@ export default class ActivityEdit extends Component {
           value={this.state.description}
           onChange={this.handleChange}
         />
-        <label htmlFor="duration">Location Description</label>
+        <label htmlFor="duration">Activity Duration</label>
         <input
           type="text"
           name="duration"
@@ -94,7 +94,7 @@ export default class ActivityEdit extends Component {
           value={this.state.duration}
           onChange={this.handleChange}
         />
-        <label htmlFor="recommended">Location Description</label>
+        <label htmlFor="recommended">Do you Recommended?</label>
         <input
           type="text"
           name="recommended"
@@ -102,7 +102,7 @@ export default class ActivityEdit extends Component {
           value={this.state.recommended}
           onChange={this.handleChange}
         />
-        <label htmlFor="cost">Location Description</label>
+        <label htmlFor="cost">Activity Cost</label>
         <input
           type="text"
           name="cost"
@@ -110,7 +110,7 @@ export default class ActivityEdit extends Component {
           value={this.state.cost}
           onChange={this.handleChange}
         />
-        <label htmlFor="completion">Location Description</label>
+        <label htmlFor="completion">Activity Completion</label>
         <input
           type="text"
           name="completion"
@@ -118,7 +118,7 @@ export default class ActivityEdit extends Component {
           value={this.state.completion}
           onChange={this.handleChange}
         />
-        <label htmlFor="fitness_level">Location Description</label>
+        <label htmlFor="fitness_level">Fitness Level</label>
         <input
           type="text"
           name="fitness_level"

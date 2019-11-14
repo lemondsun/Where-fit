@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use("/", homeRouter)
 app.use("/user", userRouter);
 app.use("/user/:id/location", locationRouter);
-app.use("/user/:id/location/:id/actvity", activityRouter);
+app.use("/user/:id/location/:id/activity", activityRouter);
 // app.use("/posts", postRouter);
 
 // error handler
