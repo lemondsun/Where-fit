@@ -29,22 +29,22 @@ export default class LocationEdit extends Component {
       } = this.props.locations.find(location => {
         return location.id === parseInt(this.props.locationId)
       })
-
       this.setState({
-        id: '',
-        name: '',
-        image_url: '',
-        description: '',
-        address_line1: '',
-        address_line2: '',
-        city: '',
-        state: '',
-        zip: ''
+        id: id,
+        name: name,
+        image_url: image_url,
+        description: description,
+        address_line1: address_line1,
+        address_line2: address_line2,
+        city: city,
+        state: state,
+        zip: zip
       })
     }
   }
-  
+
   componentDidMount() {
+
     this.setFormData();
   }
   handleChange = (e) => {
@@ -58,8 +58,8 @@ export default class LocationEdit extends Component {
     }
   }
 
-  
-    render() {
+
+  render() {
     return (
       <form onSubmit={(e) => {
         e.preventDefault()
@@ -130,11 +130,17 @@ export default class LocationEdit extends Component {
           value={this.state.zip}
           onChange={this.handleChange}
         />
+
+
+        <button>Submit</button>
+
+
  
         <Link to="/user/:id/location"><button >Submit</button></Link>
         <Link to="/user/:id/location"><button >Cancel</button></Link>
   
+
       </form>
     )
   }
-  }
+}

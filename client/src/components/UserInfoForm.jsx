@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import {showUser} from '../services/api-helper'
 
 export default class UserInfoForm extends Component {
   state = {
@@ -12,6 +13,8 @@ export default class UserInfoForm extends Component {
     this.setState({ [name]: value });
     
   };
+
+ 
   render() {
     return (
       <div>
@@ -55,6 +58,8 @@ export default class UserInfoForm extends Component {
           <Link to="/user/:id/location"><button >Update your profile</button></Link>
           </div>
         </form>
+        <Link to="/user/:id/location"><button >Cancel</button></Link>
+
       </div>
     );
   }

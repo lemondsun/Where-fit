@@ -4,20 +4,28 @@ import { Link } from 'react-router-dom';
 export default class ActivityAddForm extends Component {
   state = {
     location_id: '',
-    name: '',
-    date: '',
-    description: '',
-    duration: '',
-    recommended: '',
-    cost: '',
-    completion: '',
-    fitness_level: ''
+    activityData: {
+      name: '',
+      date: '',
+      description: '',
+      duration: '',
+      recommended: '',
+      cost: '',
+      completion: '',
+      fitness_level: 0
+    }
   }
 
 
   handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({ [name]: value })
+    this.setState(prevState => ({
+      activityData: {
+        ...prevState.activityData,
+        [name]: value
+      }
+    }))
+
     this.setState({
       location_id: this.props.locationId.match.params.id
     })
@@ -29,7 +37,7 @@ export default class ActivityAddForm extends Component {
       <div>
         <form onSubmit={(e) => {
           e.preventDefault()
-          this.props.handleAddActivity(this.props.locationId.match.params.id, this.state)
+          this.props.handleAddActivity(this.props.locationId.match.params.id, this.state.activityData)
         }}>
           <h2>Activity Add</h2>
           <label htmlFor="name">Activity Name</label>
@@ -37,7 +45,7 @@ export default class ActivityAddForm extends Component {
             type="text"
             name="name"
             id="name"
-            value={this.state.name}
+            value={this.state.activityData.name}
             onChange={this.handleChange}
           />
           <label htmlFor="Date">Date on Activity</label>
@@ -45,7 +53,7 @@ export default class ActivityAddForm extends Component {
             type="date"
             name="date"
             id="date"
-            value={this.state.date}
+            value={this.state.activityData.date}
             onChange={this.handleChange}
           />
           <label htmlFor="description">Activity Description</label>
@@ -53,7 +61,7 @@ export default class ActivityAddForm extends Component {
             type="text"
             name="description"
             id="description"
-            value={this.state.description}
+            value={this.state.activityData.description}
             onChange={this.handleChange}
           />
           <label htmlFor="duration">Activity Duration</label>
@@ -61,7 +69,7 @@ export default class ActivityAddForm extends Component {
             type="text"
             name="duration"
             id="duration"
-            value={this.state.duration}
+            value={this.state.activityData.duration}
             onChange={this.handleChange}
           />
           <label htmlFor="recommended">Do you Recommended?</label>
@@ -69,7 +77,7 @@ export default class ActivityAddForm extends Component {
             type="text"
             name="recommended"
             id="recommended"
-            value={this.state.recommended}
+            value={this.state.activityData.recommended}
             onChange={this.handleChange}
           />
           <label htmlFor="cost">Activity Cost</label>
@@ -77,7 +85,7 @@ export default class ActivityAddForm extends Component {
             type="text"
             name="cost"
             id="cost"
-            value={this.state.cost}
+            value={this.state.activityData.cost}
             onChange={this.handleChange}
           />
           <label htmlFor="completion">Activity Completion</label>
@@ -85,19 +93,21 @@ export default class ActivityAddForm extends Component {
             type="text"
             name="completion"
             id="completion"
-            value={this.state.completion}
+            value={this.state.activityData.completion}
             onChange={this.handleChange}
           />
           <label htmlFor="fitness_level">Fitness Level</label>
           <input
-            type="text"
+            type="number"
             name="fitness_level"
             id="fitness_level"
-            value={this.state.fitness_level}
+            value={this.state.activityData.fitness_level}
             onChange={this.handleChange}
           />
           <button>Submit</button>
         </form>
+
+        <Link to="/user/:id/location/id/activity"><button >Cancel</button></Link>
       </div>
     )
   }
