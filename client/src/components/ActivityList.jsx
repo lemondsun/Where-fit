@@ -18,6 +18,7 @@ export default class ActiviyList extends Component {
             <div id="activityBox" key={activity.id}>
               <h2>{activity.name}</h2>
               <h4>{activity.description}</h4>
+              <h4>{activity.date.slice(0, 10)}</h4>
               <h4>{activity.duration}</h4>
               <h4>{activity.recommended}</h4>
               <h4>{activity.cost}</h4>
