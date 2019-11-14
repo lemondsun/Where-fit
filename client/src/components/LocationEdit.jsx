@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class LocationEdit extends Component {
   state = {
@@ -130,7 +131,8 @@ export default class LocationEdit extends Component {
           onChange={this.handleChange}
         />
  
-        <button>Submit</button>
+        <Link to="/user/:id/location"><button >Submit</button></Link>
+        <Link to="/user/:id/location"><button >Cancel</button></Link>
   
       </form>
     )
