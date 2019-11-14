@@ -18,6 +18,7 @@ color: black;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
+  overflow:auto;
 }
 .home-button {
   height: 35px;
@@ -39,10 +40,13 @@ button:focus {outline:0;}
 }
 
 #header-login{
-  padding-right: 15px;
-  font-size: 20px;
-  text-decoration: none;
+  width: 100px;
+  text-align: center;
+  height: 40px;
+  background: linear-gradient(#3d85c6, #073763);
   color: white;
+  border-radius: 5px;
+  font-size: 18px;
   font-weight: bold;
   
 }
@@ -50,6 +54,9 @@ button:focus {outline:0;}
 #header-login:hover{
   text-decoration: underline;
   color: white;
+}
+#header-welcome{
+  text-align: center;
 }
 
 /*Log in/register page*/
@@ -117,8 +124,22 @@ color: white;
 }
 
 .header-logout{
+  font-family: 'Ubuntu', sans-serif;
+  border-radius: 15px;
+  font-size: 10px;
+  background-color: black;
+  color:white;
+  text-align: center;
+  width: 50px;
   height: 30px;
-  margin-left: 57px;
+  opacity: 0.9;
+  transition: 0.4s;
+}
+.header-logout:hover {
+  background-color: white;
+  color: black;
+  border-width: 1px;
+  border-color: black;
 }
 
 footer{
@@ -132,4 +153,129 @@ footer{
   justify-content: center;
   font-weight: bold;
 }
+.home-locations{
+  /* margin: auto; */
+  width: 50%;
+  text-align: center;
+  margin: 0px 20px 20px ;
+  padding: 20px;
+  /* height:300px; */
+  /* width: 200px; */
+  background-color: #61C6F8;
+  box-shadow: 10px 10px black;
+  overflow:auto;border:2px solid black;
+}
+.home-img{
+  max-width: 100%;
+  height: 150px;
+}
+.header-title {
+  margin-top: 40px;
+  color: white;
+  font-size: 70px;
+  font-family: 'Sansita', sans-serif;
+  animation: text-shadow 1.5s  ;
+  font-size: 5em;
+  font-weight: 900;
+  line-height: 1;
+}
+h1:hover {
+  animation-play-state: running;
+}
+#loginPage{
+  background-image: url(https://www.myyaam.com/wp-content/uploads/2017/10/equilibre-plage.jpg
+  );
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+#login-text{
+  margin: 0%;
+}
+@keyframes text-shadow {
+  0% {  
+      transform: translateY(0);
+      text-shadow: 
+          0 0 0 #0c2ffb, 
+          0 0 0 #2cfcfd, 
+          0 0 0 #0c2ffb, 
+          0 0 0 #2cfcfd;
+          }
 
+  20% {  
+      transform: translateY(-1em);
+      text-shadow: 
+          0 0.125em 0 #0c2ffb, 
+          0 0.25em 0 #2cfcfd, 
+          0 0.125em 0 #0c2ffb, 
+          0 0.25em 0 #2cfcfd;
+  }
+
+  40% {  
+      transform: translateY(0.5em);
+      text-shadow: 
+          0 -0.0625em 0 #0c2ffb, 
+          0 -0.125em 0 #2cfcfd, 
+          0 -0.0625em 0 #0c2ffb, 
+          0 -0.125em 0 #2cfcfd;
+  }
+  
+ 60% {
+      transform: translateY(-0.25em);
+      text-shadow: 
+          0 0.03125em 0 #0c2ffb, 
+          0 0.0625em 0 #2cfcfd, 
+          0 0.03125em 0 #0c2ffb, 
+          0 0.0625em 0 #f0f5f5;
+  }
+
+  80% {  
+      transform: translateY(0);
+      text-shadow: 
+          0 0 0 #0c2ffb, 
+          0 0 0 #2cfcfd, 
+          0 0 0 #0c2ffb, 
+          0 0 0 #f0f5f5;
+  }
+}
+#location-page {
+  background-color: grey; 
+  height: 100vh;
+  overflow:auto;
+}
+#locationBox {
+  width: 50%;
+  text-align: center;
+  margin: 0px 20px 20px ;
+  padding: 20px;
+  /* height:300px; */
+  /* width: 200px; */
+  background-color: #61C6F8;
+  box-shadow: 10px 10px black;
+  overflow:auto;
+  border:2px solid black;
+}
+#locationImage {
+  max-width: 100%;
+  height: 150px;
+}
+#location-add {
+  background-color: grey; 
+}
+#location-name {
+  text-align: center;
+  margin: 0%;
+  height: 100vh;
+}
+#location-add-button {
+  position: static;
+  top: 0;
+  right: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

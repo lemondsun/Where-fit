@@ -8,7 +8,7 @@ export default function Header(props) {
       <div id="header-link-div">
         <Link id="header-link" className="header-link" to="/"><button className="home-button">Home</button></Link>
       </div>
-      <h1 id="header-text" className="header-text">WhereFit</h1>
+      <h1 id="header-text" className="header-title">Where - Fit</h1>
 
 
       {props.user.username && (
@@ -24,10 +24,10 @@ export default function Header(props) {
         </div>
       )}
       {!props.user.username && (
-        <div id="header-links-notlogged-in">
+        
           <Link id="header-login" className="header-link"
             to="/login">Account</Link>
-        </div>
+        
       )}
 
     </div>
