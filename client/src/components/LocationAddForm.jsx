@@ -25,13 +25,14 @@ export default class LocationAddForm extends Component {
 
 
   render() {
-  return (
+    return (
+    <div id="location-add">
     <form onSubmit={(e) => {
       e.preventDefault()
       this.props.handleAddLocation(this.state)
     }}>
-      <h2>Location Add</h2>
-      <label htmlFor="name">Location Name</label>
+      <h2 id="location-name">Location Add</h2>
+      <label htmlFor="name"  >Location Name</label>
       <input
         type="text"
         name="name"
@@ -98,7 +99,8 @@ export default class LocationAddForm extends Component {
       {/* <Link to={`/user/${this.props.currentUser.id}/add`}><button>Add</button></Link> */}
       <button>Submit</button>
 
-    </form>
+        </form>
+        </div>
   )
 }
 }

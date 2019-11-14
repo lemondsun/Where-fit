@@ -195,7 +195,7 @@ class App extends Component {
           user={this.state.currentUser}
           handleLogout={this.handleLogout}
         />
-        <Route exact path='/' render={() => <HomePage locations={this.state.allLocations} />} />
+        <Route exact path='/' render={() => <HomePage locations={this.state.allLocations} currentUser={this.state.currentUser}/>} />
 
         <Route exact path='/login' render={() => <LoginForm
           handleLogin={this.handleLogin}
