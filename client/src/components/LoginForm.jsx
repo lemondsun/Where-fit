@@ -14,11 +14,12 @@ export default class LoginForm extends Component {
   
   render() {
     return (
+      <div id="loginPage">
       <form className="form-div" onSubmit={(e) => {
         e.preventDefault()
         this.props.handleLogin(this.state)
       }}>
-        <h2>Login</h2><div className="login-register">
+        <h2 id="login-text">Login</h2><div className="login-register">
         <label htmlFor="username">username</label>
         <input
           type="text"
@@ -38,6 +39,7 @@ export default class LoginForm extends Component {
         <button className="login">Submit</button></div>
         <button className="register"><Link to='/register'>Register Account</Link></button>
         </form>
+        </div>
     )
   }
 }

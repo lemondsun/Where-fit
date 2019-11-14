@@ -32,9 +32,9 @@ export default function LocationList(props) {
   );
 
   return (
-    <div id="location-list">
+    <div id="location-page">
       {items}
-      <Link to={`/user/${props.currentUser.id}/location/add` }><button>Add</button></Link>
+      <Link to={`/user/${props.currentUser.id}/location/add` }><button id="location-add-button">Add</button></Link>
     </div>
   )
 
