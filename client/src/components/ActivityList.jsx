@@ -6,12 +6,10 @@ import { Link } from 'react-router-dom'
 export default class ActiviyList extends Component {
 
   componentDidMount = async () => {
-    console.log(this.props)
     this.props.getActivities(this.props.locationId.match.params.id)
   }
 
   render() {
-    console.log('in activity list', this.props)
     return (
 
       <div id="activity-list" >

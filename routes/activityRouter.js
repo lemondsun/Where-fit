@@ -20,8 +20,6 @@ activityRouter.get('/', restrict, async (req, res, next) => {
 
 activityRouter.post('/', restrict, async (req, res, next) => {
   try {
-    console.log('post', req.body)
-
     const activity = await Activity.create({
       ...req.body,
       locationId: req.params.id,

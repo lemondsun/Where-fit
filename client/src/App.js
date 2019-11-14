@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route, Link, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { indexHome, showHome, loginUser, registerUser, verifyUser, showUser, patchUser, destroyUser, indexLocation, showLocation, postLocation, putLocation, destroyLocation, indexActivity, showActivity, postActivity, putActivity, destroyActivity } from './services/api-helper';
 import LoginForm from './components/LoginForm';
 import UserInfo from './components/UserInfo';
@@ -13,7 +13,6 @@ import LocationAddForm from './components/LocationAddForm';
 import LocationEdit from './components/LocationEdit';
 import ActivityList from './components/ActivityList';
 import ActivityAddForm from './components/ActivityAddForm';
-
 import ActivityEdit from './components/ActivityEdit';
 
 class App extends Component {
@@ -99,7 +98,6 @@ class App extends Component {
   }
 
   handleUpdateUser = async (id, putData) => {
-    debugger;
     const currentUser = await patchUser(id, putData);
     if (currentUser) {
       this.setState({ currentUser });
@@ -115,13 +113,7 @@ class App extends Component {
     this.props.history.push(`/user/${this.state.currentUser.id}/location`)
   }
 
-  // handleLocationClick = async (id) => {
-  //   const currentLocation = await showLocation(id, id);
-  //   if (currentLocation) {
-  //     this.setState({ currentLocation })
-  //   }
-  //   this.props.history.push(`/user/${this.state.currentUser.id}/location/${this.state.currentLocation.id}/edit`)
-  // }
+
 
   handleEditLocation = async (id, putData) => {
     const updatedLocation = await putLocation(id, putData);
@@ -146,8 +138,6 @@ class App extends Component {
   }
 
   handleAddActivity = async (locationId, postdata) => {
-    debugger
-    console.log('handleAddActivity ', this.state.currentUser.id, locationId, postdata)
     const currentActivity = await postActivity(this.state.currentUser.id, locationId, postdata);
     this.setState(prevState => ({
       activities: [...prevState.activities, currentActivity]
@@ -156,14 +146,14 @@ class App extends Component {
   }
 
   handleEditActivity = async (id, putData) => {
-    const updatedActivity = await putActivity(this.state.currentUser.id, this.props.location_id, id);
+    const updatedActivity = await putActivity(this.state.currentUser.id, putData);
     if (updatedActivity) {
       this.setState({ updatedActivity })
       this.setState(prevState => ({
-        locations: prevState.activities.map(activity => activity.id === parseInt(updatedActivity.id) ? updatedActivity : activity)
+        activities: prevState.activities.map(activity => activity.id === parseInt(updatedActivity.id) ? updatedActivity : activity)
       }))
     }
-    this.props.history.push(`/user/${this.state.currentUser.id}/location/${this.props.location_id}/activity`)
+    this.props.history.push(`/user/${this.state.currentUser.id}/location/${updatedActivity.locationId}/activity`)
   }
 
 
@@ -251,22 +241,11 @@ class App extends Component {
             getActivities={this.getActivities}
           />} />
 
-
-
-
-
-
         <Route exact path='/user/:id/location/:id/activity/add'
           render={(props) => <ActivityAddForm
             currentUser={this.state.currentUser}
             locationId={props}
             handleAddActivity={this.handleAddActivity} />} />
-
-
-
-
-
-
 
         <Route exact path='/user/:id/location/:id/activity/:id/edit'
           render={(props) => <ActivityEdit

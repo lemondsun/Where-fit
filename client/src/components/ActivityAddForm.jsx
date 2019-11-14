@@ -14,8 +14,6 @@ export default class ActivityAddForm extends Component {
       completion: '',
       fitness_level: 0
     }
-
-
   }
 
 
@@ -108,6 +106,8 @@ export default class ActivityAddForm extends Component {
           />
           <button>Submit</button>
         </form>
+
+        <Link to="/user/:id/location/id/activity"><button >Cancel</button></Link>
       </div>
     )
   }

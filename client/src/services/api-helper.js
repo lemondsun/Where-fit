@@ -55,20 +55,12 @@ export const verifyUser = async () => {
 
 // ============== User ===============
 
-// export const indexUser = async () => {
-//   const resp = await api.get('/user');
-//   return resp.data
-// }
+
 
 export const showUser = async (id, getData) => {
   const resp = await api.get(`/user/${id}`, getData);
   return resp.data
 }
-
-// export const postUser = async (postData) => {
-//   const resp = await api.post('/register', postData);
-//   return resp.data
-// }
 
 export const putUser = async (id, putData) => {
   const resp = await api.put(`/user/${id}`, putData);
@@ -123,7 +115,6 @@ export const destroyLocation = async (id, deleteData) => {
 
 
 export const indexActivity = async (userId, locationId) => {
-  console.log('sdadassdfdffdfda', userId, 'srtysffrt', locationId)
   const resp = await api.get(`/user/${userId}/location/${locationId}/activity`, locationId);
   return resp.data
 }
@@ -134,14 +125,14 @@ export const showActivity = async (id, getData) => {
 }
 
 export const postActivity = async (userId, locationId, postData) => {
-  console.log('postActivity', userId, locationId, postData)
-  debugger
   const resp = await api.post(`/user/${userId}/location/${locationId}/activity`, postData);
   return resp.data
 }
 
-export const putActivity = async (id, putData) => {
-  const resp = await api.put(`/user/${id}/location/${id}/activity/${id}`, putData);
+export const putActivity = async (userId, putData) => {
+
+
+  const resp = await api.put(`/user/${userId}/location/${putData.location_id}/activity/${putData.id}`, putData);
   return resp.data
 }
 
