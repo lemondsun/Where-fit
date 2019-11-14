@@ -15,10 +15,11 @@ export default class UserInfoForm extends Component {
   render() {
     return (
       <div>
-        <form  onSubmit={(e) => {
+        <form id="user-form" onSubmit={(e) => {
           e.preventDefault()
           this.props.handleUpdateUser(this.props.id, this.state)
         }}>
+          <div id="form-div">
           <label htmlFor="image_url">Pofile Picture</label>
           <input
             name="image_url"
@@ -52,7 +53,7 @@ export default class UserInfoForm extends Component {
           >
           </input>
           <Link to="/user/:id/location"><button >Update your profile</button></Link>
-          
+          </div>
         </form>
       </div>
     );

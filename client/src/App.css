@@ -70,24 +70,51 @@ button:focus {outline:0;}
 
 /*Log in/register page*/
 .login-register{
-  margin:10%;
+  margin: 15%;
+  margin-bottom: 5%;
+  margin-top: 8%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: whitesmoke;
   display: flex;
   align-items: center;
   flex-direction: column;
+  opacity: 0.8;
+  width: 30%;
 }
 
 .form-div{
-text-align: center;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
 height:100vh;
 }
 
+#register-text{
+  font-size: 44px;
+  color: whitesmoke;
+}
+
+#register-text-helper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 12%;
+  width: 20%;
+  background-color: black;
+  border-radius: 25%;
+}
+
 .register{
-  height: 35px;
+  height: 55px;
   font-size: 26px;
   font-weight: bold;
   /* background-image: url(https://i.imgur.com/6QuBWKk.jpg); */
   background: linear-gradient(0deg, rgba(220,225,226,1) 0%, rgba(32,186,232,1) 0%, rgba(31,185,231,1) 38%, rgba(3,167,215,1) 100%, rgba(0,193,251,1) 100%);
   border-radius: 5px;
+  border: solid 1px black;
+  margin-bottom: 15px;
 }
 
 .register, a{
@@ -103,6 +130,7 @@ background: rgb(220,225,226);
 background: linear-gradient(0deg, rgba(220,225,226,1) 0%, rgba(32,186,232,1) 0%, rgba(31,185,231,1) 38%, rgba(3,167,215,1) 100%, rgba(0,193,251,1) 100%);
 border-radius: 5px;
 margin: 6%;
+border: 1px solid black;
 }
 
 .create, a{
@@ -121,6 +149,16 @@ color: white;
 .login, a{
   color: white;
 }
+
+#registerPage{
+  background-image: url(https://images.wallpaperscraft.com/image/bicycle_wall_sports_120826_3840x2400.jpg
+  );
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 150%;
+}
+
 /*While logged in*/
 #header-links-loggedin{
   display: block;
@@ -163,10 +201,9 @@ footer{
   font-weight: bold;
 }
 .home-locations{
-  /* margin: auto; */
   width: 50%;
   text-align: center;
-  margin: 0px 20px 20px ;
+  margin: 15px 20px 20px ;
   padding: 20px;
   /* height:300px; */
   /* width: 200px; */
@@ -174,11 +211,10 @@ footer{
   box-shadow: 10px 10px rgb(1, 9, 10,.5);
   overflow:auto;
   border:2px solid black;
-
 }
 .home-img{
   max-width: 100%;
-  height: 150px;
+  height: 250px;
 }
 .header-title {
   margin-top: 40px;
@@ -194,8 +230,8 @@ h1:hover {
   animation-play-state: running;
 }
 #loginPage{
-  background-image: url(https://www.myyaam.com/wp-content/uploads/2017/10/equilibre-plage.jpg
-  );
+  background-image: url(https://wallpaperfm.com/img/original/f/2/5/56533.jpg);
+
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -203,7 +239,21 @@ h1:hover {
 }
 #login-text{
   margin: 0%;
+  font-size: 44px;
+  color: black;
 }
+
+#login-text-helper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 13%;
+  width: 13%;
+  background-color: white;
+  opacity: 0.8;
+  border-radius: 25%;
+}
+
 @keyframes text-shadow {
   0% {  
       transform: translateY(0);
@@ -251,14 +301,14 @@ h1:hover {
   }
 }
 #location-page {
-  background-color: grey; 
+  background-image: url(https://wallpaperfm.com/img/original/a/c/1/6159.jpg); 
   height: 100vh;
   overflow:auto;
 }
 #locationBox {
   width: 50%;
   text-align: center;
-  margin: 0px 20px 20px ;
+  margin: 0px auto 20px ;
   padding: 20px;
   background-color: #61C6F8;
   box-shadow: 10px 10px rgb(1, 9, 10,.5);
@@ -275,7 +325,6 @@ h1:hover {
 #location-name {
   text-align: center;
   margin: 0%;
-  height: 100vh;
 }
 #location-add-button {
   position: static;
@@ -291,10 +340,59 @@ h1:hover {
 #user-box{
   width: 50%;
   text-align: center;
-  margin: 0px 20px 20px ;
+  margin: 0px auto 20px ;
   padding: 20px;
   background-color: #61C6F8;
   box-shadow: 10px 10px rgb(1, 9, 10,.5);
   overflow:auto;
   border:2px solid black;
+}
+
+.location-add-helper{
+  display: flex;
+  background-image: url(https://wallpaperfm.com/img/original/0/c/0/11390.jpg);
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.location-add-helper, p{
+  color: white;
+}
+
+form{
+  padding: 30px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label{
+  padding: 10px;
+}
+
+#user-form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(https://wallpaperfm.com/img/original/a/c/1/6159.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+}
+
+#form-div{
+  color: black;
+  display: flex;
+  opacity: .8;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: whitesmoke;
+  height: 50%;
+  width: 30%;
 }

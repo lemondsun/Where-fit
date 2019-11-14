@@ -19,7 +19,7 @@ export default class LoginForm extends Component {
         e.preventDefault()
         this.props.handleLogin(this.state)
       }}>
-        <h2 id="login-text">Login</h2><div className="login-register">
+        <div id="login-text-helper"><h2 id="login-text">Login</h2></div><div className="login-register">
         <label htmlFor="username">username</label>
         <input
           type="text"

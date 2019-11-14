@@ -27,10 +27,11 @@ export default class LocationAddForm extends Component {
   render() {
     return (
     <div id="location-add">
-    <form onSubmit={(e) => {
+    <form className="location-add-helper" onSubmit={(e) => {
       e.preventDefault()
       this.props.handleAddLocation(this.state)
-    }}>
+        }}>
+          <div className="location-add-helper">
       <h2 id="location-name">Location Add</h2>
       <label htmlFor="name"  >Location Name</label>
       <input
@@ -98,7 +99,7 @@ export default class LocationAddForm extends Component {
       />
       
       <button>Submit</button>
-
+</div>
         </form>
         </div>
   )
