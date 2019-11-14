@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom'
 
-export default class UserInfo extends Component {
+export default class UserInfoForm extends Component {
   state = {
     email: "",
     fitness_level: "",
@@ -9,13 +10,14 @@ export default class UserInfo extends Component {
   handleChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+    
   };
   render() {
     return (
       <div>
         <form  onSubmit={(e) => {
           e.preventDefault()
-          this.props.handleUpdateUser(this.props.id,this.state)
+          this.props.handleUpdateUser(this.props.id, this.state)
         }}>
           <label htmlFor="image_url">Pofile Picture</label>
           <input
@@ -49,7 +51,8 @@ export default class UserInfo extends Component {
             onChange={this.handleChange}
           >
           </input>
-          <button >Update your profile</button>
+          <Link to="/user/:id/location"><button >Update your profile</button></Link>
+          
         </form>
       </div>
     );

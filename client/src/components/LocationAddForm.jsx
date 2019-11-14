@@ -20,7 +20,7 @@ export default class LocationAddForm extends Component {
     this.setState({
       user_id: this.props.currentUser.id
     })
-    // console.log('state in add ', this.state)
+    
   }
 
 
@@ -96,7 +96,7 @@ export default class LocationAddForm extends Component {
         value={this.state.zip}
         onChange={this.handleChange}
       />
-      {/* <Link to={`/user/${this.props.currentUser.id}/add`}><button>Add</button></Link> */}
+      
       <button>Submit</button>
 
         </form>

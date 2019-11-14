@@ -3,7 +3,7 @@ import './App.css';
 import { Route, Link, withRouter } from 'react-router-dom';
 import { indexHome, showHome, loginUser, registerUser, verifyUser, showUser, patchUser, destroyUser, indexLocation, showLocation, postLocation, putLocation, destroyLocation, indexActivity, showActivity, postActivity, putActivity, destroyActivity } from './services/api-helper';
 import LoginForm from './components/LoginForm';
-import UserInfo from './components/UserInfo';
+import UserInfoForm from './components/UserInfoForm';
 import RegisterForm from './components/RegisterForm';
 import HomePage from './components/HomePage';
 import Header from './components/Header';
@@ -183,6 +183,11 @@ class App extends Component {
     this.setState({ activities })
     return (activities)
   }
+  
+  displayUser = async (id, getData) => {
+    const currentUser = await showUser(id, getData)
+    this.setState({ currentUser })
+  }
 
 
 
@@ -209,7 +214,7 @@ class App extends Component {
           exact
           path="/user/:id"
           render={(props) => (
-            <UserInfo
+            <UserInfoForm
               id={props.match.params.id}
               currentUser={this.state.currentUser}
               handleUpdateUser={this.handleUpdateUser}
@@ -222,7 +227,6 @@ class App extends Component {
             <LocationList
               locations={this.state.locations}
               currentUser={this.state.currentUser}
-              // handleLocationClick={this.handleLocationClick}
               handleLocationDelete={this.handleLocationDelete}
             />} />
 

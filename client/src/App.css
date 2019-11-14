@@ -21,12 +21,17 @@ color: black;
   overflow:auto;
 }
 .home-button {
-  height: 35px;
+  height: 55px;
   background: linear-gradient(#3d85c6, #073763);
   color: white;
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 26px;
   font-weight: bold;
+}
+
+.home-button:hover {
+  transform: scale(1.3);
+  transition: all ease 500ms;
 }
 
 h1{
@@ -40,15 +45,19 @@ button:focus {outline:0;}
 }
 
 #header-login{
-  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  height: 40px;
+  height: 55px;
   background: linear-gradient(#3d85c6, #073763);
   color: white;
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 26px;
   font-weight: bold;
-  
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: 15px;
 }
 
 #header-login:hover{
@@ -69,14 +78,14 @@ button:focus {outline:0;}
 
 .form-div{
 text-align: center;
-margin-bottom: 5%;
+height:100vh;
 }
 
 .register{
   height: 35px;
   font-size: 26px;
   font-weight: bold;
-  background: rgb(220,225,226);
+  /* background-image: url(https://i.imgur.com/6QuBWKk.jpg); */
   background: linear-gradient(0deg, rgba(220,225,226,1) 0%, rgba(32,186,232,1) 0%, rgba(31,185,231,1) 38%, rgba(3,167,215,1) 100%, rgba(0,193,251,1) 100%);
   border-radius: 5px;
 }
@@ -162,8 +171,10 @@ footer{
   /* height:300px; */
   /* width: 200px; */
   background-color: #61C6F8;
-  box-shadow: 10px 10px black;
-  overflow:auto;border:2px solid black;
+  box-shadow: 10px 10px rgb(1, 9, 10,.5);
+  overflow:auto;
+  border:2px solid black;
+
 }
 .home-img{
   max-width: 100%;
@@ -249,10 +260,8 @@ h1:hover {
   text-align: center;
   margin: 0px 20px 20px ;
   padding: 20px;
-  /* height:300px; */
-  /* width: 200px; */
   background-color: #61C6F8;
-  box-shadow: 10px 10px black;
+  box-shadow: 10px 10px rgb(1, 9, 10,.5);
   overflow:auto;
   border:2px solid black;
 }
@@ -278,4 +287,14 @@ h1:hover {
     animation: none !important;
     transition: none !important;
   }
+}
+#user-box{
+  width: 50%;
+  text-align: center;
+  margin: 0px 20px 20px ;
+  padding: 20px;
+  background-color: #61C6F8;
+  box-shadow: 10px 10px rgb(1, 9, 10,.5);
+  overflow:auto;
+  border:2px solid black;
 }
