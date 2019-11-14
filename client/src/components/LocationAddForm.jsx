@@ -20,12 +20,13 @@ export default class LocationAddForm extends Component {
     this.setState({
       user_id: this.props.currentUser.id
     })
-    // console.log('state in add ', this.state)
+    
   }
 
 
   render() {
     return (
+
       <div id="location-add">
         <form onSubmit={(e) => {
           e.preventDefault()
@@ -97,6 +98,10 @@ export default class LocationAddForm extends Component {
             onChange={this.handleChange}
           />
           <button>Submit</button>
+
+   
+
+
 
         </form>
       </div>

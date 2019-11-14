@@ -8,15 +8,15 @@ export default function Header(props) {
       <div id="header-link-div">
         <Link id="header-link" className="header-link" to="/"><button className="home-button">Home</button></Link>
       </div>
-      <h1 id="header-text" className="header-title">Where - Fit</h1>
+      <h1  className="header-title">Where - Fit</h1>
 
 
       {props.user.username && (
         <div id="header-links-loggedin">
-            <h2 id="header-welcome"
-            className="header-link">Welcome {props.user.username}</h2>
-          <Link id="header-user" className="header-link"
-            to={`/user/${props.user.id}`}>User Info</Link>
+            <h2 id="header-welcome">Welcome {props.user.username}</h2>
+          <Link id="profile-button" to={`/user/${props.user.id}/location`}><button>Profile</button></Link>
+          <Link id="header-user" 
+            to={`/user/${props.user.id}`}><button>User Info</button></Link>
           <button
             className="header-logout"
             onClick={props.handleLogout}>Logout</button>
