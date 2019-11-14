@@ -72,16 +72,17 @@ export const showUser = async (id, getData) => {
 
 export const putUser = async (id, putData) => {
   const resp = await api.put(`/user/${id}`, putData);
-  
+
   return resp.data
 }
 export const patchUser = async (id, putData) => {
-  try{const response = await api.patch(`/user/${id}`,putData);
+  try {
+    const response = await api.patch(`/user/${id}`, putData);
     return response.data
-  }catch (e) {
+  } catch (e) {
     console.log(`😱 Axios request failed: ${e}`);
   }
-  
+
 }
 
 export const destroyUser = async (id, deleteData) => {
@@ -121,8 +122,9 @@ export const destroyLocation = async (id, deleteData) => {
 // ============== Activity ===============
 
 
-export const indexActivity = async (id, getData) => {
-  const resp = await api.get(`/user/${id}/location/${id}/activity`, getData);
+export const indexActivity = async (userId, locationId) => {
+  console.log('sdadassdfdffdfda', userId, 'srtysffrt', locationId)
+  const resp = await api.get(`/user/${userId}/location/${locationId}/activity`, locationId);
   return resp.data
 }
 
@@ -132,7 +134,8 @@ export const showActivity = async (id, getData) => {
 }
 
 export const postActivity = async (id, postData) => {
-  const resp = await api.post(`/user/${id}/location/${id}/activity`, postData);
+  console.log('sdadasda', id, 'srtyrt', postData)
+  const resp = await api.post(`/user/${id}/location/${postData.location_id}/activity`, postData);
   return resp.data
 }
 
