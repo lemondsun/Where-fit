@@ -146,8 +146,8 @@ class App extends Component {
   }
 
   handleAddActivity = async (locationId, postdata) => {
-    console.log('handleAddActivity ', locationId, postdata)
-    const currentActivity = await postActivity(locationId, postdata);
+    console.log('handleAddActivity ', this.state.currentUser.id, locationId, postdata)
+    const currentActivity = await postActivity(this.state.currentUser.id,locationId, postdata);
     this.setState(prevState => ({
       activities: [...prevState.activities, currentActivity]
     }))
