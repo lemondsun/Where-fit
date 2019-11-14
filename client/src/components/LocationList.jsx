@@ -7,7 +7,7 @@ export default function LocationList(props) {
   const items = props.locations.map((location) =>
     <div id="locationBox" key= {location.id}>
       <img id="locationImage" src={location.image_url} />
-
+      {console.log(props.currentUser)}
       <Link to={`/user/${props.currentUser.id}/location/${location.id}/activity`}
         location={location.id}>
         <h2>{location.name}</h2>
@@ -30,11 +30,19 @@ export default function LocationList(props) {
 
     </div>
   );
+ 
 
   return (
+   
     <div id="location-page">
+      <div id="user-box">
+      <div>{props.currentUser.username}</div>
+      <img src={props.currentUser.image_url}/>
+      <div>{props.currentUser.fitness_level}</div>
+        <div>{props.currentUser.email}</div>
+        <Link to={`/user/${props.currentUser.id}/location/add` }><button id="location-add-button">Add Location</button></Link>
+        </div>
       {items}
-      <Link to={`/user/${props.currentUser.id}/location/add` }><button id="location-add-button">Add</button></Link>
     </div>
   )
 
