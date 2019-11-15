@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function LocationList(props) {
-  // debugger;
+
   const items = props.locations.map(location => (
     <div id="locationBox" key={location.id}>
       <img id="locationImage" src={location.image_url} />
@@ -20,11 +20,11 @@ export default function LocationList(props) {
       <h4>{location.state}</h4>
       <h4>{location.zip}</h4>
       <Link to={`/user/${props.currentUser.id}/location/${location.id}/edit`}>
-        <button id="location-edit-button">Edit</button>
+        <button className="location-edit-button" id={location.id}>Edit</button>
       </Link>
 
       <Link to="/">
-        <button onClick={props.handleLocationDelete} id="location-delete-button">
+        <button onClick={props.handleLocationDelete} id={location.id} className="location-delete-button">
           Delete
         </button>
       </Link>
@@ -34,7 +34,7 @@ export default function LocationList(props) {
   return (
     <div id="location-page">
       <div id="user-box">
-        <img id="user-id"src={props.currentUserInfo.image_url} />
+        <img id="user-id" src={props.currentUserInfo.image_url} />
         <p>{props.currentUserInfo.fitness_level}</p>
         <p>{props.currentUserInfo.username}</p>
         <Link to={`/user/${props.currentUser.id}/location/add`}>
