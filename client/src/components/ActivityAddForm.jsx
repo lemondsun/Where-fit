@@ -35,10 +35,11 @@ export default class ActivityAddForm extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={(e) => {
+        <form id="activity-div-full" onSubmit={(e) => {
           e.preventDefault()
           this.props.handleAddActivity(this.props.locationId.match.params.id, this.state.activityData)
         }}>
+          <div id="activity-div">
           <h2>Activity Add</h2>
           <label htmlFor="name">Activity Name</label>
           <input
@@ -104,10 +105,11 @@ export default class ActivityAddForm extends Component {
             value={this.state.activityData.fitness_level}
             onChange={this.handleChange}
           />
-          <button>Submit</button>
+            <button>Submit</button></div>
+          <Link to="/user/:id/location/id/activity"><button id="cancel-that">Cancel this addition</button></Link>
         </form>
 
-        <Link to="/user/:id/location/id/activity"><button >Cancel</button></Link>
+        
       </div>
     )
   }

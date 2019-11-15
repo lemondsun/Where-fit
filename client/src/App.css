@@ -419,7 +419,7 @@ label{
   transform: scale(1.1);
   transition: all ease 500ms;
 }
-#location-edit-button {
+.location-edit-button {
   height: 30px;
   background: linear-gradient(#3d85c6, #073763);
   color: white;
@@ -427,13 +427,13 @@ label{
   font-size: 12px;
   font-weight: bold;
 }
-#location-edit-button:hover{
+.location-edit-button:hover{
   background: white;
   color: black;
   transform: scale(1.3);
   transition: all ease 500ms;
 }
-#location-delete-button {
+.location-delete-button {
   height: 30px;
   background: linear-gradient(#3d85c6, #073763);
   color: white;
@@ -441,7 +441,7 @@ label{
   font-size: 12px;
   font-weight: bold;
 }
-#location-delete-button:hover{
+.location-delete-button:hover{
   background: white;
   color: black;
   transform: scale(1.3);
@@ -463,4 +463,47 @@ label{
 }
 #header-welcome{
   font-family: 'Sansita', sans-serif;
+}
+
+#activity-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+}
+
+#activity-div-full{
+  background-image: url(https://i.pinimg.com/originals/71/b5/b4/71b5b4a0fa0e2d6788e057227a15771c.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+#cancel-that{
+  height: 30px;
+  color: red;
+  margin-top: 10px;
+}
+
+#activity-list{
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.addy{
+  height: 900px;
+  width: 900px;
+  font-size: 90px;
+}
+
+.addy:hover{
+  transform: scale(1.3);
+  transition: all ease 500ms;
+}
+
+.addy:active{
+  background-color: red;
 }

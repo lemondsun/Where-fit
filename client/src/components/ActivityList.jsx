@@ -38,8 +38,7 @@ export default class ActiviyList extends Component {
         )
         }
         <Link to={`/user/${this.props.currentUser.id}/location/${this.props.locationId.match.params.id}/activity/add`}>
-          <button id={this.props.locationId.match.params.id}>Add</button>
-          hello
+          <button className="addy" id={this.props.locationId.match.params.id}>Add This Activity!</button>
         </Link>
 
       </div>
