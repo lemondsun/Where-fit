@@ -37,7 +37,8 @@ import ActivityEdit from "./components/ActivityEdit";
 
 class App extends Component {
   state = {
-    currentUser: "",
+    currentUser: {},
+    currentUser2: "",
     locations: [],
     allLocations: [],
     activities: [],
@@ -54,7 +55,8 @@ class App extends Component {
   componentDidMount = async () => {
     const allLocations = await indexHome();
     this.setState({ allLocations });
-    if (this.state.currentUser.length) {
+    this.setState({ currentUser2: this.state.currentUser })
+    if (this.state.currentUser2.length) {
       const currentUserInfo = await showUser(this.state.currentUser.id);
       this.setState({ currentUserInfo });
     }
@@ -182,8 +184,12 @@ class App extends Component {
   };
 
   handleAddActivity = async (locationId, postdata) => {
-    console.log("handleAddActivity ", locationId, postdata);
-    const currentActivity = await postActivity(locationId, postdata);
+    // console.log("handleAddActivity ", locationId, postdata);
+    // const currentActivity = await postActivity(locationId, postdata);
+
+    const currentActivity = await postActivity(this.state.currentUser.id, locationId, postdata);
+
+
     this.setState(prevState => ({
       activities: [...prevState.activities, currentActivity]
     }));
@@ -193,25 +199,30 @@ class App extends Component {
   };
 
   handleEditActivity = async (id, putData) => {
-    const updatedActivity = await putActivity(
-      this.state.currentUser.id,
-      this.props.location_id,
-      id
-    );
+    const updatedActivity = await putActivity(this.state.currentUser.id, putData);
+    // const updatedActivity = await putActivity(
+    //   this.state.currentUser.id,
+    //   this.props.location_id,
+    //   id
+    // );
     if (updatedActivity) {
       this.setState({ updatedActivity });
       this.setState(prevState => ({
-        locations: prevState.activities.map(activity =>
-          activity.id === parseInt(updatedActivity.id)
-            ? updatedActivity
-            : activity
-        )
-      }));
+        activities: prevState.activities.map(activity => activity.id === parseInt(updatedActivity.id) ? updatedActivity : activity)
+      }))
+      // locations: prevState.activities.map(activity =>
+      //   activity.id === parseInt(updatedActivity.id)
+      //     ? updatedActivity
+      //     : activity
+      // )
+      // }));
     }
-    this.props.history.push(
-      `/user/${this.state.currentUser.id}/location/${this.props.location_id}/activity`
-    );
-  };
+    // this.props.history.push(
+    //   `/user/${this.state.currentUser.id}/location/${this.props.location_id}/activity`
+    // );
+    // };
+    this.props.history.push(`/user/${this.state.currentUser.id}/location/${updatedActivity.locationId}/activity`)
+  }
 
   handleActivityDelete = async event => {
     const id = event.target.id;
@@ -222,7 +233,7 @@ class App extends Component {
       })
     }));
     this.props.history.push(
-      `/user/${this.state.currentUser.id}/location/${this.props.location_id}/activity`
+      `/user/${this.state.currentUser.id}/location`
     );
   };
 
@@ -234,6 +245,11 @@ class App extends Component {
     this.setState({ activities });
     return activities;
   };
+
+  // displayUser = async (id, getData) => {
+  //   const currentUser = await showUser(id, getData)
+  //   this.setState({ currentUser })
+  // }
 
   render() {
     return (
