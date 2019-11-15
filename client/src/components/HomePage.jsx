@@ -14,7 +14,7 @@ export default function HomePage(props) {
               <img className="home-img" src={location.image_url} alt={location.name}></img>
               <h2 className="home-name">{location.name}</h2>
               <h2 className="home-desc">{location.description}</h2>
-              <Link to="/login"><h3>Login to view more</h3></Link>
+              <Link to="/login"><h3>Login to view more areas around you!</h3></Link>
             </div>
           ))}
         </>
