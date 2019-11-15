@@ -12,7 +12,7 @@ export default class ActiviyList extends Component {
   render() {
     return (
 
-      <div id="activity-list" >
+      <div id="activity-background" >
         {this.props.activities && (
           this.props.activities.map((activity) => (
             <div id="activityBox" key={activity.id}>
@@ -26,11 +26,12 @@ export default class ActiviyList extends Component {
               <h4>{activity.fitness_level}</h4>
               <Link to={`/user/${this.props.currentUser.id}/location/${this.props.locationId.match.params.id}/activity/${activity.id}/edit`}>
                 <button
+                className="activity-edit-button"
                   id={activity.id}>Edit</button>
               </Link>
 
               <Link to="/">
-                <button onClick={this.props.handleActivityDelete}
+                <button className="activity-delete-button"onClick={this.props.handleActivityDelete}
                   id={activity.id}>Delete</button>
               </Link>
 
@@ -39,7 +40,7 @@ export default class ActiviyList extends Component {
         )
         }
         <Link to={`/user/${this.props.currentUser.id}/location/${this.props.locationId.match.params.id}/activity/add`}>
-          <button className="addy" id={this.props.locationId.match.params.id}>Add This Activity!</button>
+          <button className="add-activity-button" id={this.props.locationId.match.params.id}>Add An Activity!</button>
         </Link>
 
       </div>
